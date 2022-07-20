@@ -1,12 +1,45 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using GoalGetters.Models;
+using GoalGetters.Repositories;
 
 namespace GoalGetters.Controllers
 {
-    public class UserProfileController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserProfileController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly IUserProfileRepository _userProfileRepository;
+        public UserProfileController(IUserProfileRepository userProfileRepository)
         {
-            return View();
+            _userProfileRepository = userProfileRepository;
+        }
+
+        [HttpGet("{firebaseUserId}")]
+        public IActionResult GetUserProfile(string firebaseUserId)
+        {
+            return Ok(_userProfileRepository.GetByFirebaseUserId(firebaseUserId));
+        }
+
+        [HttpGet("DoesUserExist/{firebaseUserId}")]
+        public IActionResult DoesUserExist(string firebaseUserId)
+        {
+            var userProfile = _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
+            if (userProfile == null)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Post(UserProfile userProfile)
+        {
+            _userProfileRepository.Add(userProfile);
+            return CreatedAtAction(
+                nameof(GetUserProfile),
+                new { firebaseUserId = userProfile.FirebaseUserId },
+                userProfile);
         }
     }
 }
