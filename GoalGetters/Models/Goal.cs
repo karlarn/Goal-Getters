@@ -16,5 +16,7 @@ namespace GoalGetters.Models
         public DateTime ExpectedCompletionDate { get; set; }
         public string WorstCaseScenario { get; set; }
         public DateTime CompletionDate { get; set; }
+        public DifficultyLevel DifficultyLevel { get; set; }
+        public UserProfile UserProfile { get; set; }
     }
 }

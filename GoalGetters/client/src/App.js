@@ -4,6 +4,8 @@ import { Spinner } from 'reactstrap';
 import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
 import { onLoginStatusChange } from "./modules/authManager";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {

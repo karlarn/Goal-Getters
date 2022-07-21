@@ -1,6 +1,6 @@
 ﻿namespace GoalGetters.Repositories
 {
-    public class IGoalRepository
+    public interface IGoalRepository
     {
     }
 }
