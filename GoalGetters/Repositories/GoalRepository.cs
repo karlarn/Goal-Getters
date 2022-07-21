@@ -63,7 +63,6 @@ namespace GoalGetters.Repositories
                             DifficultyLevelId = DbUtils.GetInt(reader, "DifficultyLevelId"),
                             DateCreated = DbUtils.GetDateTime(reader, "DateCreated"),
                             ExpectedCompletionDate = DbUtils.GetDateTime(reader, "ExpectedCompletionDate"),
-                            CompletionDate = (System.DateTime)DbUtils.GetNullableDateTime(reader, "CompletionDate"),
                             DifficultyLevel = new DifficultyLevel
                             {
                                 Id = DbUtils.GetInt(reader, "DifficultyLevelId"),
@@ -76,9 +75,13 @@ namespace GoalGetters.Repositories
                                 LastName = DbUtils.GetString(reader, "LastName")
                             }
                         };
-                        if (DbUtils.GetString(reader, "WorstCaseScenario") != null)
+                        if (!DbUtils.IsDbNull(reader, "WorstCaseSenario"))
                         {
                             goal.WorstCaseScenario = DbUtils.GetString(reader, "WorstCaseSenario");
+                        }
+                        if (!DbUtils.IsDbNull(reader, "CompletionDate"))
+                        {
+                            goal.CompletionDate = DbUtils.GetDateTime(reader, "CompletionDate");
                         }
          
                         goals.Add(goal);
@@ -121,7 +124,6 @@ namespace GoalGetters.Repositories
                                 DifficultyLevelId = DbUtils.GetInt(reader, "DifficultyLevelId"),
                                 DateCreated = DbUtils.GetDateTime(reader, "DateCreated"),
                                 ExpectedCompletionDate = DbUtils.GetDateTime(reader, "ExpectedCompletionDate"),
-                                CompletionDate = (System.DateTime)DbUtils.GetNullableDateTime(reader, "CompletionDate"),
                                 DifficultyLevel = new DifficultyLevel
                                 {
                                     Id = DbUtils.GetInt(reader, "DifficultyLevelId"),
@@ -135,9 +137,13 @@ namespace GoalGetters.Repositories
                                 }
 
                             };
-                            if (DbUtils.GetString(reader, "WorstCaseScenario") != null)
+                            if (DbUtils.GetString(reader, "WorstCaseSenario") != null)
                             {
                                 goal.WorstCaseScenario = DbUtils.GetString(reader, "WorstCaseSenario");
+                            }
+                            if (!DbUtils.IsDbNull(reader, "CompletionDate"))
+                            {
+                                goal.CompletionDate = DbUtils.GetDateTime(reader, "CompletionDate");
                             }
                             goals.Add(goal);
 
