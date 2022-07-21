@@ -1,6 +1,8 @@
-﻿namespace GoalGetters.Repositories
+﻿using GoalGetters.Models;
+
+namespace GoalGetters.Repositories
 {
-    public class IIFeelYouRepository
+    public interface IIFeelYouRepository
     {
     }
 }
