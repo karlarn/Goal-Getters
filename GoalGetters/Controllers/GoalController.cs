@@ -9,7 +9,7 @@ using System;
 
 namespace GoalGetters.Controllers
 {
-    
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class GoalController : ControllerBase
