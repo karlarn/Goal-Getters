@@ -10,6 +10,7 @@ namespace GoalGetters.Repositories
         public List<Goal> GetAllGoals();
         public List<Goal> GetAllGoalsById(int id);
         public void Delete(int id);
+        public Goal GetGoalById(int id);
 
     }
 }

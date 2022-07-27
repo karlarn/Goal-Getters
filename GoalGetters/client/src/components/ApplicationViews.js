@@ -5,6 +5,7 @@ import Register from "./Register";
 import Hello from "./Hello";
 import UserGoalList from "./goal/UserGoalList";
 import { GoalForm } from "./goal/GoalForm";
+import { GoalEdit } from "./goal/GoalEditForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -15,6 +16,7 @@ export default function ApplicationViews({ isLoggedIn }) {
             index
             element={isLoggedIn ? <UserGoalList /> : <Navigate to="/login" />}
           />
+          <Route path="edit/:id" element={<GoalEdit/>}/>
           <Route path="create" element={<GoalForm/>}/>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />

@@ -65,3 +65,48 @@ export const addGoal = (goal) => {
         })
     })
 }
+
+export const getSingleGoalById = (id) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${id}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        }).then((res) => {
+            if (res.ok) {
+                return res.json()
+            } else {
+                throw new Error(
+                    "An unknown error occurred while trying to get this category."
+                )
+            }
+        })
+    })
+}
+
+export const updateGoal = (goal) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${goal.id}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(goal)
+        }).then((res) => {
+            if (res.ok) {
+
+            }
+            else if (res.status === 401) {
+                throw new Error("Unauthorized");
+            }
+            else {
+                throw new Error(
+                    "An unknown error occurred while trying to edit category.",
+                );
+            }
+        })
+    })
+}

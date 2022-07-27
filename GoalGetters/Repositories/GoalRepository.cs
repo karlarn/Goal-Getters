@@ -184,16 +184,52 @@ namespace GoalGetters.Repositories
                             GoalToMeet = @goalToMeet,
                             DifficultyLevelId = @difficultyLevelId,
                             ExpectedCompletionDate = @expectedCompletionDate,
-                            WorstCaseSenario = @worstCaseScenario,
+                            WorstCaseSenario = @worstCaseScenario
                         WHERE Id = @id";
-
+                    cmd.Parameters.AddWithValue("@id", goal.Id);
                     cmd.Parameters.AddWithValue("@goalToMeet", goal.GoalToMeet);
                     cmd.Parameters.AddWithValue("@difficultyLevelId", goal.DifficultyLevelId);
                     cmd.Parameters.AddWithValue("@worstCaseScenario", DbUtils.ValueOrDBNull(goal.WorstCaseScenario));
-                    cmd.Parameters.AddWithValue("@categoryId", goal.ExpectedCompletionDate);
+                    cmd.Parameters.AddWithValue("@expectedCompletionDate", goal.ExpectedCompletionDate);
 
                     cmd.ExecuteNonQuery();
                 }
+            }
+        }
+
+        public Goal GetGoalById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"Select UserProfileId, GoalToMeet, DifficultyLevelId, ExpectedCompletionDate, WorstCaseSenario 
+                                        From Goal 
+                                        Where Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        Goal goal = null;
+                        if (reader.Read())
+                        {
+                            goal = new Goal()
+                            {
+                                Id = id,
+                                GoalToMeet = DbUtils.GetString(reader, "GoalToMeet"),
+                                WorstCaseScenario = DbUtils.GetString(reader, "WorstCaseSenario"),
+                                DifficultyLevelId = DbUtils.GetInt(reader, "DifficultyLevelId"),
+                                ExpectedCompletionDate = DbUtils.GetDateTime(reader, "ExpectedCompletionDate"),
+                                UserProfileId = DbUtils.GetInt(reader, "UserProfileId")
+                            };
+                        }
+
+                        return goal;
+                    }
+                }
+
             }
         }
     }

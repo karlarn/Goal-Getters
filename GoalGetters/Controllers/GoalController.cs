@@ -41,6 +41,22 @@ namespace GoalGetters.Controllers
             return Ok(Goals);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            UserProfile user = GetCurrentUserProfile();
+            Goal goal = _goalRepository.GetGoalById(id);
+            if (goal == null)
+            {
+                return NotFound();
+            }
+            else if (goal.UserProfileId != user.Id)
+            {
+                return BadRequest();
+            }
+            return Ok(goal);
+        }
+
         [HttpPost]
         public IActionResult Post(Goal goal)
         {

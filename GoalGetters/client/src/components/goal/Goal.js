@@ -8,7 +8,7 @@ const Goal = ({goal}) => {
         <>
         <Card>
             <CardBody>
-                <p>Goal: {goal.goalToMeet}</p>
+                <p>Your goal: {goal.goalToMeet}</p>
                 <p>Expected completion date: {goal.expectedCompletionDate.slice([0],[10])}</p>
                 <p>Worst Case: {goal.worstCaseScenario}</p>
                 <p>Created on: {goal.dateCreated.slice([0],[10 ])}</p>
@@ -18,7 +18,7 @@ const Goal = ({goal}) => {
                 <Button  onClick={() => navigate(`/goal/edit/${goal.id}`)}>
                     Add Update
                 </Button>
-                <Button  onClick={() => navigate(`/goal/edit/${goal.id}`)}>
+                <Button  onClick={() => navigate(`/edit/${goal.id}`)}>
                     Edit Goal
                 </Button>
                 <Button  onClick={() => navigate(`/goal/edit/${goal.id}`)}>
