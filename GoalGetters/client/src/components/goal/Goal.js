@@ -1,9 +1,17 @@
 import React from "react";
 import { Card, CardBody, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
+import { deleteGoal } from "../../modules/goalManager";
 
 const Goal = ({goal}) => {
     const navigate = useNavigate();
+
+    const removeGoal = (id) => {
+        deleteGoal(id)
+        .then(()=> window.location.reload())
+
+    }
+
     return (
         <>
         <Card>
@@ -24,7 +32,8 @@ const Goal = ({goal}) => {
                 <Button  onClick={() => navigate(`/goal/edit/${goal.id}`)}>
                     Accomplish Goal
                 </Button>
-                <Button  onClick={() => navigate(`/goal/edit/${goal.id}`)}>
+                <Button  onClick={() => 
+                    removeGoal(goal.id)}>
                     Delete Goal
                 </Button>
             </CardBody>

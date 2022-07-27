@@ -110,3 +110,24 @@ export const updateGoal = (goal) => {
         })
     })
 }
+
+export const deleteGoal = (id) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(id)
+        }).then((res) => {
+            if (res.ok) {
+
+            } 
+            else {
+                throw new Error(
+                    "Nope."
+                )
+            }
+        })
+    })
+}
