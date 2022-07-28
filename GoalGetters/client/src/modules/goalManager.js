@@ -105,7 +105,7 @@ export const updateGoal = (goal) => {
             }
             else {
                 throw new Error(
-                    "An unknown error occurred while trying to edit category.",
+                    "Well, -_- .",
                 );
             }
         })
@@ -128,6 +128,28 @@ export const deleteGoal = (id) => {
                 throw new Error(
                     "Nope."
                 )
+            }
+        })
+    })
+}
+
+export const updateCompletion = (id) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/Complete`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(id)
+        }).then((res) => {
+            if (res.ok) {
+
+            }
+            else {
+                throw new Error(
+                    "Well, -_- .",
+                );
             }
         })
     })

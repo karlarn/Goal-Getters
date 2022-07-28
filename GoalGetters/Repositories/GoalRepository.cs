@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using GoalGetters.Models;
 using GoalGetters.Utils;
+using System;
 
 namespace GoalGetters.Repositories
 {
@@ -231,6 +232,25 @@ namespace GoalGetters.Repositories
                     }
                 }
 
+            }
+        }
+
+        public void UpdateCompletion(int id)
+        {
+
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE Goal
+                        SET
+                            CompletionDate = GETDATE()
+                        WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
     }

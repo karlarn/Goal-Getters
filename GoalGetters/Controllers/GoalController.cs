@@ -87,6 +87,13 @@ namespace GoalGetters.Controllers
             return NoContent();
         }
 
+        [HttpPut("Complete")]
+        public IActionResult PutComplete( int id )
+        {
+            _goalRepository.UpdateCompletion(id);
+            return NoContent();
+        }
+
         private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
