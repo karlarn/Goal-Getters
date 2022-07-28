@@ -32,7 +32,7 @@ export default function Header({ isLoggedIn }) {
                 <NavLink tag={RRNavLink} to="/create">Add A Goal</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={RRNavLink} to="/">Community Goals</NavLink>
+                <NavLink tag={RRNavLink} to="/communitygoals">Community Goals</NavLink>
               </NavItem>
               </>
             }

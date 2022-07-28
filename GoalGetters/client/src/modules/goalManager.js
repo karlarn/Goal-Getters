@@ -29,13 +29,14 @@ export const getAllGoals = () => {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
             },
         }).then((res) => {
             if (res.ok) {
                 return res.json()
             } else {
                 throw new Error(
-                    "An unknown error occurred while trying to get categories.",
+                    "An unknown error occurred while trying to get goals. Heh.",
                 )
             }
 

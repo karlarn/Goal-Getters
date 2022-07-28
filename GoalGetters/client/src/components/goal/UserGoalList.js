@@ -14,7 +14,8 @@ export default function UserGoalList() {
     }
 
     useEffect(()=> {
-        getUserGoals();
+        getUserGoals()
+        
     }, [])
 
     return (

@@ -45,7 +45,7 @@ namespace GoalGetters.Repositories
                 {
                     cmd.CommandText = @"Select g.Id, g.UserProfileId, g.GoalToMeet, g.DifficultyLevelId, g.DateCreated, g.ExpectedCompletionDate, g.WorstCaseSenario, g.CompletionDate,
                                         dl.Name,
-                                        up.FirstName, up.LastName
+                                        up.FirstName, up.LastName, up.Email
                                         From Goal g
                                         Left Join DifficultyLevel dl on dl.Id = g.DifficultyLevelId
                                         Left Join UserProfile up on up.Id = g.UserProfileId
@@ -72,7 +72,8 @@ namespace GoalGetters.Repositories
                             {
                                 Id = DbUtils.GetInt(reader, "UserProfileId"),
                                 FirstName = DbUtils.GetString(reader, "FirstName"),
-                                LastName = DbUtils.GetString(reader, "LastName")
+                                LastName = DbUtils.GetString(reader, "LastName"),
+                                Email = DbUtils.GetString(reader, "Email")
                             }
                         };
                         if (!DbUtils.IsDbNull(reader, "WorstCaseSenario"))
