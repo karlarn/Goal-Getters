@@ -135,13 +135,12 @@ export const deleteGoal = (id) => {
 
 export const updateCompletion = (id) => {
     return getToken().then((token) => {
-        return fetch(`${baseUrl}/Complete`, {
+        return fetch(`${baseUrl}/Complete/${id}`, {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
-            },
-            body: JSON.stringify(id)
+            }
         }).then((res) => {
             if (res.ok) {
 

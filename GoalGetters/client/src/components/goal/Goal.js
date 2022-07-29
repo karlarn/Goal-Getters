@@ -35,9 +35,10 @@ const Goal = ({goal}) => {
                 <Button  onClick={() => navigate(`/edit/${goal.id}`)}>
                     Edit Goal
                 </Button>
-                <Button  onClick={() => completeGoal(goal)}>
+                {goal.completionDate === null ? "" :<Button  onClick={() => completeGoal(goal.id)}>
                     Accomplish Goal
-                </Button>
+                </Button>}
+                
                 <Button  onClick={() => 
                     removeGoal(goal.id)}>
                     Delete Goal

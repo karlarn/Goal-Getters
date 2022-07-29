@@ -87,7 +87,7 @@ namespace GoalGetters.Controllers
             return NoContent();
         }
 
-        [HttpPut("Complete")]
+        [HttpPut("Complete/{id}")]
         public IActionResult PutComplete( int id )
         {
             _goalRepository.UpdateCompletion(id);
