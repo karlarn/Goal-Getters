@@ -15,6 +15,7 @@ export default function UserGoalList() {
 
     useEffect(()=> {
         getUserGoals()
+        console.log(goals)
         
     }, [])
 

@@ -29,16 +29,15 @@ const Goal = ({goal}) => {
                 <Button  onClick={() => navigate(`/goal/edit/${goal.id}`)}>
                     View Updates
                 </Button>
-                <Button  onClick={() => navigate(`/goal/edit/${goal.id}`)}>
+                {goal.completionDate === "0001-01-01T00:00:00" ?<> <Button  onClick={() => navigate(`/goal/addupdate/${goal.id}`)}>
                     Add Update
                 </Button>
-                <Button  onClick={() => navigate(`/edit/${goal.id}`)}>
+                 <Button  onClick={() => navigate(`/edit/${goal.id}`)}>
                     Edit Goal
                 </Button>
-                {goal.completionDate === null ? "" :<Button  onClick={() => completeGoal(goal.id)}>
+                <Button  onClick={() => completeGoal(goal.id)}>
                     Accomplish Goal
-                </Button>}
-                
+                </Button> </> : ""}
                 <Button  onClick={() => 
                     removeGoal(goal.id)}>
                     Delete Goal

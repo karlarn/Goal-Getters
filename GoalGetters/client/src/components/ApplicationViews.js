@@ -7,6 +7,7 @@ import UserGoalList from "./goal/UserGoalList";
 import { GoalForm } from "./goal/GoalForm";
 import { GoalEdit } from "./goal/GoalEditForm";
 import {CommunityGoalList} from "./goal/CommunityGoalList";
+import { GoalUpdateForm } from "./goal/GoalUpdateForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -17,6 +18,7 @@ export default function ApplicationViews({ isLoggedIn }) {
             index
             element={isLoggedIn ? <UserGoalList /> : <Navigate to="/login" />}
           />
+          <Route path="goal/addupdate/:id" element={<GoalUpdateForm/>}/>
           <Route path="communitygoals" element={<CommunityGoalList/>}/>
           <Route path="edit/:id" element={<GoalEdit/>}/>
           <Route path="create" element={<GoalForm/>}/>

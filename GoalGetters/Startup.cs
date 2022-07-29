@@ -32,6 +32,7 @@ namespace GoalGetters
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<IGoalRepository, GoalRepository>();
             services.AddTransient<IDifficultyLevelRepository, DifficultyLevelRepository>();
+            services.AddTransient<IGoalUpdateRepository, GoalUpdateRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
