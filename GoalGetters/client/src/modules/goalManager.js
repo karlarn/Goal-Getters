@@ -16,7 +16,7 @@ export const getGoalsById = (id) => {
                 return res.json()
             } else {
                 throw new Error(
-                    "An unknown error occurred while trying to get this category."
+                    "An unknown error occurred while trying to get this goal."
                 )
             }
         })
@@ -80,7 +80,7 @@ export const getSingleGoalById = (id) => {
                 return res.json()
             } else {
                 throw new Error(
-                    "An unknown error occurred while trying to get this category."
+                    "An unknown error occurred while trying to get this goal."
                 )
             }
         })
@@ -149,6 +149,26 @@ export const updateCompletion = (id) => {
                 throw new Error(
                     "Well, -_- .",
                 );
+            }
+        })
+    })
+}
+
+export const getSingleGoalWithUpdatesById = (id) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/WithUpdates/${id}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        }).then((res) => {
+            if (res.ok) {
+                return res.json()
+            } else {
+                throw new Error(
+                    "An unknown error occurred while trying to get you goal."
+                )
             }
         })
     })

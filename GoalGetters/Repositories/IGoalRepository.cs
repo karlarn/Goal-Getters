@@ -12,6 +12,7 @@ namespace GoalGetters.Repositories
         public void Delete(int id);
         public Goal GetGoalById(int id);
         public void UpdateCompletion(int id);
+        public Goal GetGoalWithUpdatesById(int id);
 
     }
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllGoals } from "../../modules/goalManager";
 import Goal from "./Goal";
-import CommunityGoal from "./communityGoal";
+import CommunityGoal from "./CommunityGoal";
 import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 import firebase from "firebase/app";

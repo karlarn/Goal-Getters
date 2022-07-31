@@ -235,6 +235,101 @@ namespace GoalGetters.Repositories
             }
         }
 
+
+        public Goal GetGoalWithUpdatesById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"Select g.Id, g.UserProfileId, g.GoalToMeet, g.DifficultyLevelId, g.DateCreated, g.ExpectedCompletionDate, g.WorstCaseSenario, g.CompletionDate,
+                                        dl.Name,
+                                        up.FirstName, up.LastName,
+                                        gu.Timestamp, gu.WhatHaveYouDone
+                                        From Goal g
+                                        Left Join GoalUpdate gu on gu.GoalId = g.Id
+                                        Left Join DifficultyLevel dl on dl.Id = g.DifficultyLevelId
+                                        Left Join UserProfile up on up.Id = g.UserProfileId
+                                        Where g.Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        Goal goal = null;
+                        while (reader.Read())
+                        {
+                            if(goal == null)
+                            {
+                                goal = new Goal
+                                {
+                                    Id = DbUtils.GetInt(reader, "Id"),
+                                    GoalToMeet = DbUtils.GetString(reader, "GoalToMeet"),
+                                    UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                                    DifficultyLevelId = DbUtils.GetInt(reader, "DifficultyLevelId"),
+                                    WorstCaseScenario = DbUtils.GetString(reader, "WorstCaseSenario"),
+                                    DateCreated = DbUtils.GetDateTime(reader, "DateCreated"),
+                                    ExpectedCompletionDate = DbUtils.GetDateTime(reader, "ExpectedCompletionDate"),
+                                    DifficultyLevel = new DifficultyLevel
+                                    {
+                                        Id = DbUtils.GetInt(reader, "DifficultyLevelId"),
+                                        Name = DbUtils.GetString(reader, "Name"),
+                                    },
+                                    UserProfile = new UserProfile
+                                    {
+                                        Id = DbUtils.GetInt(reader, "UserProfileId"),
+                                        FirstName = DbUtils.GetString(reader, "FirstName"),
+                                        LastName = DbUtils.GetString(reader, "LastName")
+                                    },
+                                    GoalUpdates = null
+                                };
+
+                                if (DbUtils.GetString(reader, "WorstCaseSenario") != null)
+                                {
+                                    goal.WorstCaseScenario = DbUtils.GetString(reader, "WorstCaseSenario");
+                                }
+                                if (!DbUtils.IsDbNull(reader, "CompletionDate"))
+                                {
+                                    goal.CompletionDate = DbUtils.GetDateTime(reader, "CompletionDate");
+                                }
+                               
+
+
+                                if (!DbUtils.IsDbNull(reader, "WhatHaveYouDone"))
+                                {
+                                    goal.GoalUpdates = new List<GoalUpdate>();
+                                    goal.GoalUpdates.Add(new GoalUpdate
+                                    {
+                                        Timestamp = DbUtils.GetDateTime(reader, "Timestamp"),
+                                        WhatHaveYouDone = DbUtils.GetString(reader, "WhatHaveYouDone")
+                                    });
+
+                                }
+                                
+
+
+                            }
+                            else
+                            {
+                                GoalUpdate extraUpdate = new GoalUpdate
+                                {
+                                    Timestamp = DbUtils.GetDateTime(reader, "Timestamp"),
+                                    WhatHaveYouDone = DbUtils.GetString(reader, "WhatHaveYouDone")
+                                };
+                                goal.GoalUpdates.Add(extraUpdate);
+
+                            }
+
+
+                        }
+
+                        return goal;
+                    }
+                }
+
+            }
+        }
         public void UpdateCompletion(int id)
         {
 

@@ -26,7 +26,7 @@ const Goal = ({goal}) => {
                 <p>Expected completion date: {goal.expectedCompletionDate.slice([0],[10])}</p>
                 <p>Worst Case: {goal.worstCaseScenario}</p>
                 <p>Created on: {goal.dateCreated.slice([0],[10 ])}</p>
-                <Button  onClick={() => navigate(`/goal/edit/${goal.id}`)}>
+                <Button  onClick={() => navigate(`/goalwithupdates/${goal.id}`)}>
                     View Updates
                 </Button>
                 {goal.completionDate === "0001-01-01T00:00:00" ?<> <Button  onClick={() => navigate(`/goal/addupdate/${goal.id}`)}>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GoalGetters.Models
@@ -18,5 +19,6 @@ namespace GoalGetters.Models
         public DateTime CompletionDate { get; set; }
         public DifficultyLevel DifficultyLevel { get; set; }
         public UserProfile UserProfile { get; set; }
+        public List<GoalUpdate> GoalUpdates { get; set; }
     }
 }
