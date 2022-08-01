@@ -2,6 +2,7 @@
 using System;
 using GoalGetters.Models;
 using GoalGetters.Repositories;
+using System.Security.Claims;
 
 namespace GoalGetters.Controllers
 {
@@ -40,6 +41,22 @@ namespace GoalGetters.Controllers
                 nameof(GetUserProfile),
                 new { firebaseUserId = userProfile.FirebaseUserId },
                 userProfile);
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            UserProfile up = new UserProfile
+            {
+                Id = GetCurrentUserProfile().Id
+            };
+            return Ok(up);
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

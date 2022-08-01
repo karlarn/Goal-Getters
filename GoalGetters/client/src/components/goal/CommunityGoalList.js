@@ -6,25 +6,25 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 import firebase from "firebase/app";
 import "firebase/auth";
+import { getCurrentUserId } from "../../modules/authManager";
 
 export const CommunityGoalList =() => {
     const navigate = useNavigate();
 
     const [goals, setGoals] = useState([]);
-    const [user, setUser] = useState();
+    const [userId, setUserId] = useState();
 
     const getCommunityGoals = () => {
         getAllGoals().then(g => setGoals(g))
     }
 
-    const setCurrentUserEmail = () => {
-        const currentUser = firebase.auth().currentUser.email;
-        setUser(currentUser);
+    const setCurrentUserId = () => {
+        getCurrentUserId().then((res)=>setUserId(res.id))
     }
 
     useEffect(() => {
         getCommunityGoals();
-        setCurrentUserEmail();
+        setCurrentUserId();
     }, [])
 
     return (
@@ -35,7 +35,7 @@ export const CommunityGoalList =() => {
                     {goals.map((singleGoal) => (
                         <div key={singleGoal.id}>
                         {
-                            user === singleGoal.userProfile.email ? <Goal goal={singleGoal}  /> : <CommunityGoal goal={singleGoal} />
+                            userId === singleGoal.userProfile.id ? <Goal goal={singleGoal}  /> : <CommunityGoal goal={singleGoal} currentUser={userId} />
                         }
                         
                         </div> ))}

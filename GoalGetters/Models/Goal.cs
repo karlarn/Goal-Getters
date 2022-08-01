@@ -20,5 +20,6 @@ namespace GoalGetters.Models
         public DifficultyLevel DifficultyLevel { get; set; }
         public UserProfile UserProfile { get; set; }
         public List<GoalUpdate> GoalUpdates { get; set; }
+        public List<IFeelYou> Likes { get; set; }
     }
 }
