@@ -1,13 +1,12 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using GoalGetters.Models;
+using GoalGetters.Utils;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
-using GoalGetters.Models;
-using GoalGetters.Utils;
-using System;
 
 namespace GoalGetters.Repositories
 {
-    public class GoalRepository: BaseRepository, IGoalRepository
+    public class GoalRepository : BaseRepository, IGoalRepository
     {
         public GoalRepository(IConfiguration configuration) : base(configuration) { }
 
@@ -59,9 +58,9 @@ namespace GoalGetters.Repositories
 
                     while (reader.Read())
                     {
-                        if(goal == null || goal.Id != DbUtils.GetInt(reader, "Id"))
+                        if (goal == null || goal.Id != DbUtils.GetInt(reader, "Id"))
                         {
-                            if(goal != null)
+                            if (goal != null)
                             {
                                 goals.Add(goal);
                             }
@@ -105,7 +104,7 @@ namespace GoalGetters.Repositories
                                 });
                             }
 
-                            
+
                         }
                         else
                         {
@@ -117,7 +116,7 @@ namespace GoalGetters.Repositories
                         }
 
                     }
-                         
+
                     reader.Close();
                     goals.Add(goal);
 
@@ -291,7 +290,7 @@ namespace GoalGetters.Repositories
                         Goal goal = null;
                         while (reader.Read())
                         {
-                            if(goal == null)
+                            if (goal == null)
                             {
                                 goal = new Goal
                                 {
@@ -324,7 +323,7 @@ namespace GoalGetters.Repositories
                                 {
                                     goal.CompletionDate = DbUtils.GetDateTime(reader, "CompletionDate");
                                 }
-                               
+
 
 
                                 if (!DbUtils.IsDbNull(reader, "WhatHaveYouDone"))
@@ -332,13 +331,13 @@ namespace GoalGetters.Repositories
                                     goal.GoalUpdates = new List<GoalUpdate>();
                                     goal.GoalUpdates.Add(new GoalUpdate
                                     {
-                                        Id=DbUtils.GetInt(reader, "UpdateId"),
+                                        Id = DbUtils.GetInt(reader, "UpdateId"),
                                         Timestamp = DbUtils.GetDateTime(reader, "Timestamp"),
                                         WhatHaveYouDone = DbUtils.GetString(reader, "WhatHaveYouDone")
                                     });
 
                                 }
-                                
+
 
 
                             }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace GoalGetters.Models
 {

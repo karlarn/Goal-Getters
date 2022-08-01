@@ -21,8 +21,8 @@ function App() {
 
   return (
     <Router>
-      <Header isLoggedIn={isLoggedIn}/>
-      <ApplicationViews isLoggedIn={isLoggedIn}/>
+      <Header isLoggedIn={isLoggedIn} />
+      <ApplicationViews isLoggedIn={isLoggedIn} />
     </Router>
   );
 }

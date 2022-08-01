@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using GoalGetters.Models;
 using GoalGetters.Repositories;
-using GoalGetters.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-using System;
 
 namespace GoalGetters.Controllers
 {
@@ -104,7 +103,7 @@ namespace GoalGetters.Controllers
         }
 
         [HttpPut("Complete/{id}")]
-        public IActionResult PutComplete( int id )
+        public IActionResult PutComplete(int id)
         {
             _goalRepository.UpdateCompletion(id);
             return NoContent();

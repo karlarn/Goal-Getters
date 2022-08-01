@@ -13,7 +13,7 @@ export const addLike = (id) => {
             }
         }).then((res) => {
             if (res.ok) {
-                
+
             }
             else {
                 throw new Error(
@@ -34,7 +34,7 @@ export const removeLike = (id) => {
             }
         }).then((res) => {
             if (res.ok) {
-                
+
             }
             else {
                 throw new Error(

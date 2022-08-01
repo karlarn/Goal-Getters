@@ -56,7 +56,7 @@ export const addGoal = (goal) => {
             body: JSON.stringify(goal)
         }).then((res) => {
             if (res.ok) {
-                
+
             }
             else {
                 throw new Error(
@@ -123,7 +123,7 @@ export const deleteGoal = (id) => {
         }).then((res) => {
             if (res.ok) {
 
-            } 
+            }
             else {
                 throw new Error(
                     "Nope."

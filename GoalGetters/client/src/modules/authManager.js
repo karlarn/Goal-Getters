@@ -55,9 +55,9 @@ export const logout = () => {
 
 export const register = (userProfile, password) => {
   return firebase.auth().createUserWithEmailAndPassword(userProfile.email, password)
-    .then((createResponse) => _saveUser({ 
-      ...userProfile, 
-      firebaseUserId: createResponse.user.uid 
+    .then((createResponse) => _saveUser({
+      ...userProfile,
+      firebaseUserId: createResponse.user.uid
     }));
 };
 
@@ -70,21 +70,21 @@ export const onLoginStatusChange = (onLoginStatusChangeHandler) => {
 
 export const getCurrentUserId = () => {
   return getToken().then((token) => {
-      return fetch(_apiUrl, {
-          method: "GET",
-          headers: {
-              Authorization: `Bearer ${token}`,
-          },
-      }).then((res) => {
-          if (res.ok) {
-              return res.json()
-          } else {
-              throw new Error(
-                  "An unknown error occurred while trying to get user.",
-              )
-          }
+    return fetch(_apiUrl, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        throw new Error(
+          "An unknown error occurred while trying to get user.",
+        )
+      }
 
-      })
+    })
   })
 
 }

@@ -13,21 +13,21 @@ export default function UserGoalList() {
         getGoalsById().then(g => setGoals(g));
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         getUserGoals()
-        
+
     }, [])
 
     return (
         <>
-        <Button onClick={() => navigate(`/create`)}>Add Goal</Button>
-        <div className="container">
-            <div>
-                {goals.map((singleGoal) => (
-                    <Goal goal={singleGoal} key={singleGoal.id}/>
-                ))}
+            <Button onClick={() => navigate(`/create`)}>Add Goal</Button>
+            <div className="container">
+                <div>
+                    {goals.map((singleGoal) => (
+                        <Goal goal={singleGoal} key={singleGoal.id} />
+                    ))}
+                </div>
             </div>
-        </div>
         </>
     )
 }

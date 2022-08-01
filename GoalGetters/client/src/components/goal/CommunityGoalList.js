@@ -4,11 +4,9 @@ import Goal from "./Goal";
 import CommunityGoal from "./CommunityGoal";
 import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
-import firebase from "firebase/app";
-import "firebase/auth";
 import { getCurrentUserId } from "../../modules/authManager";
 
-export const CommunityGoalList =() => {
+export const CommunityGoalList = () => {
     const navigate = useNavigate();
 
     const [goals, setGoals] = useState([]);
@@ -19,7 +17,7 @@ export const CommunityGoalList =() => {
     }
 
     const setCurrentUserId = () => {
-        getCurrentUserId().then((res)=>setUserId(res.id))
+        getCurrentUserId().then((res) => setUserId(res.id))
     }
 
     useEffect(() => {
@@ -31,15 +29,15 @@ export const CommunityGoalList =() => {
         <>
             <Button onClick={() => navigate(`/create`)}>Add Goal</Button>
             <div className="container">
-                
-                    {goals.map((singleGoal) => (
-                        <div key={singleGoal.id}>
+
+                {goals.map((singleGoal) => (
+                    <div key={singleGoal.id}>
                         {
-                            userId === singleGoal.userProfile.id ? <Goal goal={singleGoal}  /> : <CommunityGoal goal={singleGoal} currentUser={userId} />
+                            userId === singleGoal.userProfile.id ? <Goal goal={singleGoal} /> : <CommunityGoal goal={singleGoal} currentUser={userId} />
                         }
-                        
-                        </div> ))}
-                
+
+                    </div>))}
+
             </div>
         </>
     )

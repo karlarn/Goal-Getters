@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using GoalGetters.Models;
+﻿using GoalGetters.Models;
 using GoalGetters.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace GoalGetters.Controllers

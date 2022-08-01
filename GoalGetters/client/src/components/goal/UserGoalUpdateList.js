@@ -42,7 +42,7 @@ export default function UserGoalUpdateList() {
                             <p>Expected completion date: {goal?.expectedCompletionDate.slice([0], [10])}</p>
                             <p>Worst Case: {goal?.worstCaseScenario}</p>
                             <p>Created on: {goal?.dateCreated.slice([0], [10])}</p>
-                            
+
                             {goal?.completionDate === "0001-01-01T00:00:00" ? <>
                                 <Button onClick={() => navigate(`/edit/${goal.id}`)}>
                                     Edit Goal
@@ -57,14 +57,14 @@ export default function UserGoalUpdateList() {
                         </CardBody>
                         <CardBody>
                             {goal?.goalUpdates === null ? <p>There are no updates for this goal.</p> : <><h3>Update:</h3>
-                            {
-                                goal?.goalUpdates.map(update => (
-                                    <div key={update.id}>
-                                    <p>Updated on: {update.timestamp.slice([0],[10])}</p>
-                                    <p>What you did to get closer to the goal: {update.whatHaveYouDone}</p>
-                                    </div>
-                                ))
-                            }
+                                {
+                                    goal?.goalUpdates.map(update => (
+                                        <div key={update.id}>
+                                            <p>Updated on: {update.timestamp.slice([0], [10])}</p>
+                                            <p>What you did to get closer to the goal: {update.whatHaveYouDone}</p>
+                                        </div>
+                                    ))
+                                }
                             </>
                             }
                         </CardBody>

@@ -1,6 +1,5 @@
 ﻿using GoalGetters.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoalGetters.Controllers

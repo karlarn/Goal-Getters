@@ -1,8 +1,7 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using GoalGetters.Models;
+using GoalGetters.Utils;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
-using GoalGetters.Models;
-using GoalGetters.Utils;
 
 namespace GoalGetters.Repositories
 {

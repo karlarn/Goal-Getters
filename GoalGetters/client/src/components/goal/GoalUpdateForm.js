@@ -20,7 +20,7 @@ export const GoalUpdateForm = () => {
     }
 
     const handleClickSave = (e) => {
-        if (update.whatHaveYouDone === "" ) {
+        if (update.whatHaveYouDone === "") {
             window.alert("Please fill out all fields.")
         }
         else {
@@ -28,8 +28,6 @@ export const GoalUpdateForm = () => {
             addGoalUpdate(update).then(() => navigate(`/`))
         }
     }
-
-    
 
     return (
         <Form>
@@ -42,7 +40,6 @@ export const GoalUpdateForm = () => {
                     value={update.whatHaveYouDone}
                     placeholder="What have you done to get closer to reaching your goal?" />
             </FormGroup>
-           
             <FormGroup>
                 <Button onClick={() => handleClickSave()}>Create Update </Button>
                 <Button onClick={() => navigate(`/`)}>Cancel</Button>

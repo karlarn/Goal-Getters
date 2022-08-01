@@ -14,7 +14,7 @@ export const addGoalUpdate = (update) => {
             body: JSON.stringify(update)
         }).then((res) => {
             if (res.ok) {
-                
+
             }
             else {
                 throw new Error(

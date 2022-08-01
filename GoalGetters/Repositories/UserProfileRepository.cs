@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using GoalGetters.Models;
+﻿using GoalGetters.Models;
 using GoalGetters.Utils;
-using GoalGetters.Repositories;
+using Microsoft.Extensions.Configuration;
 
 namespace GoalGetters.Repositories
 {

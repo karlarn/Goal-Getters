@@ -10,7 +10,7 @@ export const GoalEdit = () => {
         id: 0,
         goalToMeet: "",
         worstCaseScenario: "",
-        difficultyLevelId: 0, 
+        difficultyLevelId: 0,
         expectedCompletionDate: "",
         userProfileId: 0
     })
@@ -20,12 +20,12 @@ export const GoalEdit = () => {
 
     const getDLs = () => {
         getDifficultyLevels()
-        .then(dls => setDL(dls))
+            .then(dls => setDL(dls))
     }
 
     const getGoal = () => {
         getSingleGoalById(id)
-            .then(g => setGoal(g)) 
+            .then(g => setGoal(g))
     }
 
     const handleInputChange = (e) => {
@@ -37,7 +37,7 @@ export const GoalEdit = () => {
 
     const handleClickUpdate = () => {
         if (goal.difficultyLevelId === 0 || goal.expectedCompletionDate === "" ||
-        goal.goalToMeet === "" || goal.worstCaseScenario === "") {
+            goal.goalToMeet === "" || goal.worstCaseScenario === "") {
             window.alert("Fill out all the fields please.")
         } else {
             updateGoal(goal)
@@ -73,13 +73,13 @@ export const GoalEdit = () => {
                     id="expectedCompletionDate"
                     type="date"
                     onChange={handleInputChange}
-                    value={goal.expectedCompletionDate.slice([0],[10])}
+                    value={goal.expectedCompletionDate.slice([0], [10])}
                 />
-                <Label for="difficultyLevelId">Difficulty Level</Label><br/>
-                <select value={goal.difficultyLevelId} 
-                        name="difficultyLevel"
-                        id="difficultyLevelId"
-                        onChange={handleInputChange}>
+                <Label for="difficultyLevelId">Difficulty Level</Label><br />
+                <select value={goal.difficultyLevelId}
+                    name="difficultyLevel"
+                    id="difficultyLevelId"
+                    onChange={handleInputChange}>
                     <option value="0">Select A Difficulty Level</option>
                     {dL.map(d => (
                         <option key={d.id} value={d.id}>
@@ -89,11 +89,11 @@ export const GoalEdit = () => {
                 </select>
             </FormGroup>
             <FormGroup>
-                    <Button
-                            onClick={() => handleClickUpdate()}>Update
-                    </Button>         
                 <Button
-                        onClick={() => navigate("/")}>Cancel
+                    onClick={() => handleClickUpdate()}>Update
+                </Button>
+                <Button
+                    onClick={() => navigate("/")}>Cancel
                 </Button>
             </FormGroup>
         </Form>
