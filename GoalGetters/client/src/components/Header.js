@@ -18,6 +18,7 @@ export default function Header({ isLoggedIn }) {
   return (
     <div>
       <Navbar color="light" light expand="md">
+      <img class="owl" src="/images/GoalOwl.png"></img>
         <NavbarBrand tag={RRNavLink} to="/">Goal Getters</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
