@@ -56,13 +56,13 @@ export default function UserGoalUpdateList() {
                             </Button>
                         </CardBody>
                         <CardBody>
-                            {goal?.goalUpdates === null ? "" : <><h3>Update:</h3>
+                            {goal?.goalUpdates === null ? <p>There are no updates for this goal.</p> : <><h3>Update:</h3>
                             {
                                 goal?.goalUpdates.map(update => (
-                                    <>
+                                    <div key={update.id}>
                                     <p>Updated on: {update.timestamp.slice([0],[10])}</p>
                                     <p>What you did to get closer to the goal: {update.whatHaveYouDone}</p>
-                                    </>
+                                    </div>
                                 ))
                             }
                             </>

@@ -246,7 +246,7 @@ namespace GoalGetters.Repositories
                     cmd.CommandText = @"Select g.Id, g.UserProfileId, g.GoalToMeet, g.DifficultyLevelId, g.DateCreated, g.ExpectedCompletionDate, g.WorstCaseSenario, g.CompletionDate,
                                         dl.Name,
                                         up.FirstName, up.LastName,
-                                        gu.Timestamp, gu.WhatHaveYouDone
+                                        gu.Timestamp, gu.WhatHaveYouDone, gu.Id as 'UpdateId'
                                         From Goal g
                                         Left Join GoalUpdate gu on gu.GoalId = g.Id
                                         Left Join DifficultyLevel dl on dl.Id = g.DifficultyLevelId
@@ -301,6 +301,7 @@ namespace GoalGetters.Repositories
                                     goal.GoalUpdates = new List<GoalUpdate>();
                                     goal.GoalUpdates.Add(new GoalUpdate
                                     {
+                                        Id=DbUtils.GetInt(reader, "UpdateId"),
                                         Timestamp = DbUtils.GetDateTime(reader, "Timestamp"),
                                         WhatHaveYouDone = DbUtils.GetString(reader, "WhatHaveYouDone")
                                     });
