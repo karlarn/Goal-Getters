@@ -51,6 +51,7 @@ export const GoalEdit = () => {
     }, [])
 
     return (
+        <div className="container">
         <Form>
             <h3>Edit Your Goal</h3>
             <FormGroup>
@@ -90,12 +91,13 @@ export const GoalEdit = () => {
             </FormGroup>
             <FormGroup>
                 <Button
-                    onClick={() => handleClickUpdate()}>Update
+                 color="success" onClick={() => handleClickUpdate()}>Update
                 </Button>
                 <Button
-                    onClick={() => navigate("/")}>Cancel
+                  color="danger" onClick={() => navigate("/")}>Cancel
                 </Button>
             </FormGroup>
         </Form>
+        </div>
     )
 }

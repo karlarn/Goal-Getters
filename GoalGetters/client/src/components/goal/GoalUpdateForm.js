@@ -30,6 +30,8 @@ export const GoalUpdateForm = () => {
     }
 
     return (
+        <div className="container">
+            <h1>This Just In!</h1>
         <Form>
             <FormGroup>
                 <Label for="whatHaveYouDone">Goal Update:</Label>
@@ -41,9 +43,10 @@ export const GoalUpdateForm = () => {
                     placeholder="What have you done to get closer to reaching your goal?" />
             </FormGroup>
             <FormGroup>
-                <Button onClick={() => handleClickSave()}>Create Update </Button>
-                <Button onClick={() => navigate(`/`)}>Cancel</Button>
+                <Button color="success" onClick={() => handleClickSave()}>Create Update </Button>
+                <Button color="danger" onClick={() => navigate(`/`)}>Cancel</Button>
             </FormGroup>
         </Form>
+        </div>
     )
 }

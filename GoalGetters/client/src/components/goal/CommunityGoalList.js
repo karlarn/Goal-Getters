@@ -27,9 +27,8 @@ export const CommunityGoalList = () => {
 
     return (
         <>
-            <Button onClick={() => navigate(`/create`)}>Add Goal</Button>
             <div className="container">
-
+            <Button color="success" size="lg" onClick={() => navigate(`/create`)}>Add Goal</Button>
                 {goals.map((singleGoal) => (
                     <div key={singleGoal.id}>
                         {

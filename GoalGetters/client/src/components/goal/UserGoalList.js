@@ -19,15 +19,13 @@ export default function UserGoalList() {
     }, [])
 
     return (
-        <>
-            <Button onClick={() => navigate(`/create`)}>Add Goal</Button>
             <div className="container">
+            <Button color="success" size="lg" onClick={() => navigate(`/create`)}>Add Goal</Button>
                 <div>
                     {goals.map((singleGoal) => (
                         <Goal goal={singleGoal} key={singleGoal.id} />
                     ))}
                 </div>
             </div>
-        </>
     )
 }

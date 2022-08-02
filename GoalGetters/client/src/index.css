@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(220, 209, 230);
+  padding-bottom: 2em;
 }
 
 code {
@@ -14,4 +16,13 @@ code {
 
 .owl {
   max-width: 15%;
+  margin-right: 2em;
 }
+
+Button {
+  margin: .5em .5em .5em 0;
+}
+
+
+
+

@@ -17,13 +17,14 @@ const CommunityGoal = ({ goal, currentUser }) => {
 
     return (
         <>
-            <Card>
-                <CardBody>
-                    <p>Goal: {goal.goalToMeet}</p>
-                    <p>Expected completion date: {goal.expectedCompletionDate.slice([0], [10])}</p>
-                    <p>Worst Case: {goal.worstCaseScenario}</p>
-                    <p>Created on: {goal.dateCreated.slice([0], [10])}</p>
-                    {goal.likes.find((obj) => obj.userProfileId === currentUser) ? <Button onClick={() => removeTheFeels(goal.id)}>{`Unfeel (${goal.likes.length})`}</Button> : <Button onClick={() => addTheFeels(goal.id)}>{`I Feel You (${goal.likes.length})`}</Button>}
+            <Card >
+                <CardBody >
+                    <p>{goal.userProfile.fullName}'s Goal: {goal.goalToMeet}</p>
+                    <p>Worst Case Senario: {goal.worstCaseScenario}</p>
+                    <p>Created: {goal.dateCreated.slice([0], [10])}</p>
+                    <p>Expected Completion Date: {goal.expectedCompletionDate.slice([0], [10])}</p>
+                    <p>Completion Date: {goal.completionDate === "0001-01-01T00:00:00" ? "This goal is not completed yet." : `${goal.completionDate.slice([0], [10])}`} </p>
+                    {goal.likes.find((obj) => obj.userProfileId === currentUser) ? <Button color="primary" onClick={() => removeTheFeels(goal.id)}>{`Unfeel (${goal.likes.length})`}</Button> : <Button outline color="primary" onClick={() => addTheFeels(goal.id)}>{`I Feel You (${goal.likes.length})`}</Button>}
                 </CardBody>
             </Card>
         </>

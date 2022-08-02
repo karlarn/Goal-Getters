@@ -136,50 +136,80 @@ namespace GoalGetters.Repositories
                 {
                     cmd.CommandText = @"Select g.Id, g.UserProfileId, g.GoalToMeet, g.DifficultyLevelId, g.DateCreated, g.ExpectedCompletionDate, g.WorstCaseSenario, g.CompletionDate,
                                         dl.Name,
-                                        up.FirstName, up.LastName
+                                        up.FirstName, up.LastName,
+                                        ify.UserProfileId as 'UserLike'
                                         From Goal g
                                         Left Join DifficultyLevel dl on dl.Id = g.DifficultyLevelId
                                         Left Join UserProfile up on up.Id = g.UserProfileId
+                                        Left Join IFeelYou ify on ify.GoalId = g.Id
                                         Where g.UserProfileId = @id
                                         Order By DateCreated Desc";
                     cmd.Parameters.AddWithValue("@id", id);
                     using (var reader = cmd.ExecuteReader())
                     {
                         List<Goal> goals = new List<Goal>();
+                        Goal goal = null;
                         while (reader.Read())
                         {
-                            Goal goal = new Goal()
+                            if (goal == null || goal.Id != DbUtils.GetInt(reader, "Id"))
                             {
-                                Id = DbUtils.GetInt(reader, "Id"),
-                                GoalToMeet = DbUtils.GetString(reader, "GoalToMeet"),
-                                UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                                DifficultyLevelId = DbUtils.GetInt(reader, "DifficultyLevelId"),
-                                DateCreated = DbUtils.GetDateTime(reader, "DateCreated"),
-                                ExpectedCompletionDate = DbUtils.GetDateTime(reader, "ExpectedCompletionDate"),
-                                DifficultyLevel = new DifficultyLevel
+                                if (goal != null)
                                 {
-                                    Id = DbUtils.GetInt(reader, "DifficultyLevelId"),
-                                    Name = DbUtils.GetString(reader, "Name"),
-                                },
-                                UserProfile = new UserProfile
-                                {
-                                    Id = DbUtils.GetInt(reader, "UserProfileId"),
-                                    FirstName = DbUtils.GetString(reader, "FirstName"),
-                                    LastName = DbUtils.GetString(reader, "LastName")
+                                    goals.Add(goal);
                                 }
 
-                            };
-                            if (DbUtils.GetString(reader, "WorstCaseSenario") != null)
-                            {
-                                goal.WorstCaseScenario = DbUtils.GetString(reader, "WorstCaseSenario");
+                                goal = new Goal
+                                {
+                                    Id = DbUtils.GetInt(reader, "Id"),
+                                    GoalToMeet = DbUtils.GetString(reader, "GoalToMeet"),
+                                    UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                                    DifficultyLevelId = DbUtils.GetInt(reader, "DifficultyLevelId"),
+                                    DateCreated = DbUtils.GetDateTime(reader, "DateCreated"),
+                                    ExpectedCompletionDate = DbUtils.GetDateTime(reader, "ExpectedCompletionDate"),
+                                    DifficultyLevel = new DifficultyLevel
+                                    {
+                                        Id = DbUtils.GetInt(reader, "DifficultyLevelId"),
+                                        Name = DbUtils.GetString(reader, "Name"),
+                                    },
+                                    UserProfile = new UserProfile
+                                    {
+                                        Id = DbUtils.GetInt(reader, "UserProfileId"),
+                                        FirstName = DbUtils.GetString(reader, "FirstName"),
+                                        LastName = DbUtils.GetString(reader, "LastName")
+                                    },
+                                    Likes = new List<IFeelYou>()
+                                };
+                                if (!DbUtils.IsDbNull(reader, "WorstCaseSenario"))
+                                {
+                                    goal.WorstCaseScenario = DbUtils.GetString(reader, "WorstCaseSenario");
+                                }
+                                if (!DbUtils.IsDbNull(reader, "CompletionDate"))
+                                {
+                                    goal.CompletionDate = DbUtils.GetDateTime(reader, "CompletionDate");
+                                }
+                                if (!DbUtils.IsDbNull(reader, "UserLike"))
+                                {
+                                    goal.Likes.Add(new IFeelYou
+                                    {
+                                        GoalId = DbUtils.GetInt(reader, "Id"),
+                                        UserProfileId = DbUtils.GetInt(reader, "UserLike")
+                                    });
+                                }
+
+
                             }
-                            if (!DbUtils.IsDbNull(reader, "CompletionDate"))
+                            else
                             {
-                                goal.CompletionDate = DbUtils.GetDateTime(reader, "CompletionDate");
+                                goal.Likes.Add(new IFeelYou
+                                {
+                                    GoalId = DbUtils.GetInt(reader, "Id"),
+                                    UserProfileId = DbUtils.GetInt(reader, "UserLike")
+                                });
                             }
-                            goals.Add(goal);
 
                         }
+                        reader.Close();
+                        goals.Add(goal);
                         return goals;
                     }
                 }

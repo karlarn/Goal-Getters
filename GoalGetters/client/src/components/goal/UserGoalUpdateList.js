@@ -33,8 +33,9 @@ export default function UserGoalUpdateList() {
 
     return (
         <>
-            {goal?.completionDate === "0001-01-01T00:00:00" ? <Button onClick={() => navigate(`/goal/addupdate/${goal.id}`)}>Add Update</Button> : ""}
+            
             <div className="container">
+            {goal?.completionDate === "0001-01-01T00:00:00" ? <Button color="warning" onClick={() => navigate(`/goal/addupdate/${goal.id}`)}>Add Update</Button> : <h1>You Met This Goal!</h1>}
                 <div>
                     <Card>
                         <CardBody>
@@ -44,24 +45,26 @@ export default function UserGoalUpdateList() {
                             <p>Created on: {goal?.dateCreated.slice([0], [10])}</p>
 
                             {goal?.completionDate === "0001-01-01T00:00:00" ? <>
-                                <Button onClick={() => navigate(`/edit/${goal.id}`)}>
+                                <Button outline color="success" onClick={() => navigate(`/edit/${goal.id}`)}>
                                     Edit Goal
                                 </Button>
-                                <Button onClick={() => completeGoal(goal.id)}>
+                                <Button outline color="success" onClick={() => completeGoal(goal.id)}>
                                     Accomplish Goal
                                 </Button> </> : ""}
-                            <Button onClick={() =>
+                            <Button outline color="danger" onClick={() =>
                                 removeGoal(goal.id)}>
                                 Delete Goal
                             </Button>
                         </CardBody>
                         <CardBody>
                             {goal?.goalUpdates === null ? <p>There are no updates for this goal.</p> : <><h3>Update:</h3>
+                            <p>___________________________</p>
                                 {
                                     goal?.goalUpdates.map(update => (
                                         <div key={update.id}>
-                                            <p>Updated on: {update.timestamp.slice([0], [10])}</p>
-                                            <p>What you did to get closer to the goal: {update.whatHaveYouDone}</p>
+                                            <p>Updated: {update.timestamp.slice([0], [10])}</p>
+                                            <p>{update.whatHaveYouDone}</p>
+                                            <p>___________________________</p>
                                         </div>
                                     ))
                                 }

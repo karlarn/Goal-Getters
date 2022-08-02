@@ -37,6 +37,8 @@ export const GoalForm = () => {
     }, [])
 
     return (
+        <div className="container">
+            <h1>Make That Goal!</h1>
         <Form>
             <FormGroup>
                 <Label for="goalToMeet">Goal to meet:</Label>
@@ -77,9 +79,10 @@ export const GoalForm = () => {
                 />
             </FormGroup>
             <FormGroup>
-                <Button onClick={() => handleClickSave()}>Create New Goal </Button>
-                <Button onClick={() => navigate(`/`)}>Cancel</Button>
+                <Button color="success" onClick={() => handleClickSave()}>Create New Goal </Button>
+                <Button color="danger" onClick={() => navigate(`/`)}>Cancel</Button>
             </FormGroup>
         </Form>
+        </div>
     )
 }
