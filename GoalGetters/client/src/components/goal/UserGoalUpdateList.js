@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getSingleGoalWithUpdatesById, deleteGoal, updateCompletion } from "../../modules/goalManager"
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Card, CardBody } from "reactstrap";
+import { Button, Card, CardBody, Col, Row } from "reactstrap";
 
 export default function UserGoalUpdateList() {
     const navigate = useNavigate();
@@ -39,11 +39,16 @@ export default function UserGoalUpdateList() {
                 <div>
                     <Card>
                         <CardBody>
-                            <p>Your goal: {goal?.goalToMeet}</p>
-                            <p>Expected completion date: {goal?.expectedCompletionDate.slice([0], [10])}</p>
-                            <p>Worst Case: {goal?.worstCaseScenario}</p>
-                            <p>Created on: {goal?.dateCreated.slice([0], [10])}</p>
-
+                            <Row>
+                                <Col>
+                            <b>Your goal:</b><p> {goal?.goalToMeet}</p>
+                            <b>Worst Case Scenario:</b><p> {goal?.worstCaseScenario}</p>
+                            </Col>
+                            <Col>
+                            <p><b>Created:</b> {goal?.dateCreated.slice([0], [10])}</p>
+                            <p><b>Expected completion date:</b> {goal?.expectedCompletionDate.slice([0], [10])}</p>
+                            </Col>
+                            </Row>
                             {goal?.completionDate === "0001-01-01T00:00:00" ? <>
                                 <Button outline color="success" onClick={() => navigate(`/edit/${goal.id}`)}>
                                     Edit Goal
@@ -57,12 +62,12 @@ export default function UserGoalUpdateList() {
                             </Button>
                         </CardBody>
                         <CardBody>
-                            {goal?.goalUpdates === null ? <p>There are no updates for this goal.</p> : <><h3>Update:</h3>
+                            {goal?.goalUpdates === null ? <p>There are no updates for this goal.</p> : <>
                             <p>___________________________</p>
                                 {
                                     goal?.goalUpdates.map(update => (
                                         <div key={update.id}>
-                                            <p>Updated: {update.timestamp.slice([0], [10])}</p>
+                                            <p><b>Updated:</b> {update.timestamp.slice([0], [10])}</p>
                                             <p>{update.whatHaveYouDone}</p>
                                             <p>___________________________</p>
                                         </div>

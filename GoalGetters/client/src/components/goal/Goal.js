@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Button } from "reactstrap";
+import { Card, CardBody, Button, Row, Col } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { deleteGoal, updateCompletion } from "../../modules/goalManager";
 
@@ -21,13 +21,18 @@ const Goal = ({ goal }) => {
     return (
             <Card>
                 <CardBody>
-                    <p>Your Goal: {goal.goalToMeet}</p>
-                    <p>Worst Case Scenario: {goal.worstCaseScenario}</p>
-                    <p>I Feel You: {goal.likes.length}</p>
-                    <p>Created: {goal.dateCreated.slice([0], [10])}</p>
-                    <p>Expected Completion Date: {goal.expectedCompletionDate.slice([0], [10])}</p>
-                    <p>Completion Date: {goal.completionDate === "0001-01-01T00:00:00" ? "This goal is not completed yet." : `${goal.completionDate.slice([0], [10])}`} </p>
-                    
+                    <Row>
+                    <Col>
+                    <b>Your Goal:</b><p className="nobr">{goal.goalToMeet}</p>
+                    <b>Worst Case Scenario:</b><p>{goal.worstCaseScenario}</p>
+                    <p><b>I Feel You:</b> {goal.likes.length}</p>
+                    </Col>
+                    <Col>
+                    <p><b>Created:</b> {goal.dateCreated.slice([0], [10])}</p>
+                    <p><b>Expected Completion Date:</b> {goal.expectedCompletionDate.slice([0], [10])}</p>
+                    <p><b>Completion Date:</b> {goal.completionDate === "0001-01-01T00:00:00" ? "This goal is not completed yet." : `${goal.completionDate.slice([0], [10])}`} </p>
+                    </Col>
+                    </Row>
                     <Button outline color="warning" onClick={() => navigate(`/goalwithupdates/${goal.id}`)}>
                         View Updates
                     </Button>
