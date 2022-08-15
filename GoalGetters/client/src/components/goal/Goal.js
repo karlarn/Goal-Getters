@@ -3,23 +3,27 @@ import { Card, CardBody, Button, Row, Col } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { deleteGoal, updateCompletion } from "../../modules/goalManager";
 
-
+// goal card for rendering goals that belong specifically to the logged in user.
 const Goal = ({ goal }) => {
+    // navigates to different Url requests
     const navigate = useNavigate();
 
+    // uses the deleteGoal fetch in the goalManager to delete a specific goal after that request returns the page reloads.
     const removeGoal = (id) => {
         deleteGoal(id)
             .then(() => window.location.reload())
 
     }
 
+    // updateCompletion fetch call in goalManager changes the completeion date from null to an actual timestamp. After the request returns the page reloads.
     const completeGoal = (goal) => {
         updateCompletion(goal)
             .then(() => window.location.reload())
     }
 
+    // The visual render of a card using a singular object that was passed through
     return (
-            <Card>
+            <Card color="light" className="mb-1">
                 <CardBody>
                     <Row>
                     <Col>

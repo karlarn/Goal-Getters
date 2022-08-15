@@ -122,7 +122,6 @@ export const deleteGoal = (id) => {
             body: JSON.stringify(id)
         }).then((res) => {
             if (res.ok) {
-
             }
             else {
                 throw new Error(

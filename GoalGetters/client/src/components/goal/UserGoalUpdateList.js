@@ -37,7 +37,7 @@ export default function UserGoalUpdateList() {
             <div className="container">
             {goal?.completionDate === "0001-01-01T00:00:00" ? <Button color="warning" onClick={() => navigate(`/goal/addupdate/${goal.id}`)}>Add Update</Button> : <h1>You Met This Goal!</h1>}
                 <div>
-                    <Card>
+                    <Card color="light">
                         <CardBody>
                             <Row>
                                 <Col>
