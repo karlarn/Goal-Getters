@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { addGoal } from "../../modules/goalManager";
 import { getDifficultyLevels } from "../../modules/difficultyLevelManager";
 
+// create path exported to ApplicationView
 export const GoalForm = () => {
+
+    // An array and an object to be filled with a useEffect
     const [dLevels, setDLevel] = useState([])
     const [goal, setGoal] = useState({
         goalToMeet: "",
@@ -13,8 +16,10 @@ export const GoalForm = () => {
         worstCaseScenario: "",
     })
 
+    // Navigates to different paths 
     const navigate = useNavigate();
 
+    // When change happens in an input field the goal object is updated where the value and the id match and set to a new state. 
     const handleInputChange = (e) => {
         const newGoal = { ...goal }
         let selectedVal = e.target.value
@@ -22,6 +27,7 @@ export const GoalForm = () => {
         setGoal(newGoal)
     }
 
+    // Specific button is clicked. As long as everything is filled out the addGoal method is called in the goalManager. Once there is a response you navigate the the "/" path. 
     const handleClickSave = (e) => {
         if (goal.ExpectedCompletionDate === "" || goal.goalToMeet === "" || goal.difficultyLevelId === 0) {
             window.alert("Please fill out all fields.")
@@ -31,11 +37,12 @@ export const GoalForm = () => {
         }
     }
 
+    // when the view first loads the method in difficultyLevelManager is called and its set to the useState. Prolly refactor.
     useEffect(() => {
         getDifficultyLevels()
             .then(lvl => setDLevel(lvl))
     }, [])
-
+    // Html view
     return (
         <div className="container">
             <h1>Make That Goal!</h1>
@@ -62,6 +69,7 @@ export const GoalForm = () => {
                 <Label for="difficultyLevelId">Difficulty level:</Label><br />
                 <select value={goal.difficultyLevelId} name="difficultyLevels" id="difficultyLevelId" form="dLForm" onChange={handleInputChange}>
                     <option value="0">Select a Category</option>
+                    {/* useState of dLevels mapped out */}
                     {dLevels.map(dl => (
                         <option key={dl.id} value={dl.id}>
                             {dl.name}
