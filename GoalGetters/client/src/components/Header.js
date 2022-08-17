@@ -11,7 +11,9 @@ import {
 } from 'reactstrap';
 import { logout } from '../modules/authManager';
 
+// exports to App.js in client directory. isLoggedIn is passed since you get two different renders based on the status. 
 export default function Header({ isLoggedIn }) {
+  // Play with this later 
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 

@@ -3,34 +3,44 @@ import { getSingleGoalWithUpdatesById, deleteGoal, updateCompletion } from "../.
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Card, CardBody, Col, Row } from "reactstrap";
 
+// exported to application views 
 export default function UserGoalUpdateList() {
+    
+    //Part of react router dom library 
     const navigate = useNavigate();
+
+    // Same
     const { id } = useParams();
 
+    // Empty receptical for an object until useEffect 
     const [goal, setGoal] = useState();
 
+    // Attached to a button's onClick Imported from goalManager, fetch call for deleting a single goal then once the request comes back you change the UrL
     const removeGoal = (id) => {
         deleteGoal(id)
             .then(() => navigate("/"))
 
     }
 
+    // Called in an onClick. Updates a single key. Reloads page, try to figure out how to not make the page jump  
     const completeGoal = (goal) => {
         updateCompletion(goal)
             .then(() => window.location.reload())
     }
 
 
-
+    // Fetches a specific goal object with a list of update objects nested in
     const getUserGoalWithUpdates = () => {
         getSingleGoalWithUpdatesById(id).then(res => setGoal(res));
     }
 
+    // From the react library
     useEffect(() => {
         getUserGoalWithUpdates()
 
     }, [])
 
+    // HTML with reactstrap
     return (
         <>
             

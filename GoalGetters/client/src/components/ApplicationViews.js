@@ -9,6 +9,7 @@ import { CommunityGoalList } from "./goal/CommunityGoalList";
 import { GoalUpdateForm } from "./goal/GoalUpdateForm";
 import UserGoalUpdateList from "./goal/UserGoalUpdateList";
 
+// Different views to render on the dom based on the URL path request
 export default function ApplicationViews({ isLoggedIn }) {
   return (
     <main>
