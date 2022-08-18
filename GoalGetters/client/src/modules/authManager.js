@@ -3,6 +3,7 @@ import "firebase/auth";
 
 const _apiUrl = "/api/userprofile";
 
+// returns firebase token id from getToken then does a fetch to find it in the DB then returns a completed response. 
 const _doesUserExist = (firebaseUserId) => {
   return getToken().then((token) =>
     fetch(`${_apiUrl}/DoesUserExist/${firebaseUserId}`, {
@@ -13,6 +14,7 @@ const _doesUserExist = (firebaseUserId) => {
     }).then(resp => resp.ok));
 };
 
+// gets the firebase user id token then does a post with the token to create a new user with a userProfile object that is passed in  
 const _saveUser = (userProfile) => {
   return getToken().then((token) =>
     fetch(_apiUrl, {
@@ -26,10 +28,10 @@ const _saveUser = (userProfile) => {
 };
 
 
-
+// can be called with no arguments to access the default app's Auth service or as firebase.auth(app) to access the Auth service associated with a specific app
 export const getToken = () => firebase.auth().currentUser.getIdToken();
 
-
+// Asynchronously signs in using an email and password.
 export const login = (email, pw) => {
   return firebase.auth().signInWithEmailAndPassword(email, pw)
     .then((signInResponse) => _doesUserExist(signInResponse.user.uid))
@@ -47,12 +49,12 @@ export const login = (email, pw) => {
     });
 };
 
-
+// Part of firebase library. Signs users out
 export const logout = () => {
   firebase.auth().signOut()
 };
 
-
+// Uses firebase library to create a new user
 export const register = (userProfile, password) => {
   return firebase.auth().createUserWithEmailAndPassword(userProfile.email, password)
     .then((createResponse) => _saveUser({
@@ -61,13 +63,14 @@ export const register = (userProfile, password) => {
     }));
 };
 
-
+// Adds an observer for changes to the user's sign-in state
 export const onLoginStatusChange = (onLoginStatusChangeHandler) => {
   firebase.auth().onAuthStateChanged((user) => {
     onLoginStatusChangeHandler(!!user);
   });
 };
 
+// fetch call to return a logged in user object
 export const getCurrentUserId = () => {
   return getToken().then((token) => {
     return fetch(_apiUrl, {

@@ -1,9 +1,10 @@
 import "firebase/auth";
 import { getToken } from "./authManager";
 
+// Start of the url for all the fetch call in this file. 
 const baseUrl = '/api/DifficultyLevel';
 
-
+// Returns an array of strings 
 export const getDifficultyLevels = () => {
     return getToken().then((token) => {
         return fetch(baseUrl, {

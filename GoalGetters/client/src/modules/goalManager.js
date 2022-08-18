@@ -3,6 +3,7 @@ import { getToken } from "./authManager";
 
 const baseUrl = '/api/Goal';
 
+// Returns an array of goal objects that share a specific Id 
 export const getGoalsById = (id) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/UserGoals`, {
@@ -23,6 +24,7 @@ export const getGoalsById = (id) => {
     })
 }
 
+// Returns an array of all goals in the DB
 export const getAllGoals = () => {
     return getToken().then((token) => {
         return fetch(baseUrl, {
@@ -45,6 +47,7 @@ export const getAllGoals = () => {
 
 }
 
+// Posts a new goal object to the DB
 export const addGoal = (goal) => {
     return getToken().then((token) => {
         return fetch(baseUrl, {
@@ -67,6 +70,7 @@ export const addGoal = (goal) => {
     })
 }
 
+// returns an object of one single specific goal
 export const getSingleGoalById = (id) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/${id}`, {
@@ -87,6 +91,7 @@ export const getSingleGoalById = (id) => {
     })
 }
 
+// Puts new information into something already existing in the DB
 export const updateGoal = (goal) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/${goal.id}`, {
@@ -112,6 +117,7 @@ export const updateGoal = (goal) => {
     })
 }
 
+// Deletes a specific goal in the Db using the id as a reference
 export const deleteGoal = (id) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/${id}`, {
@@ -132,6 +138,7 @@ export const deleteGoal = (id) => {
     })
 }
 
+// Puts new information into an already existing cell by a specific Id
 export const updateCompletion = (id) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/Complete/${id}`, {
@@ -153,6 +160,7 @@ export const updateCompletion = (id) => {
     })
 }
 
+// Gets a single specific goal object with an array of updates attached to it
 export const getSingleGoalWithUpdatesById = (id) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/WithUpdates/${id}`, {
