@@ -2,8 +2,10 @@
 
 namespace GoalGetters.Models
 {
+    // class for UserProfile object 
     public class UserProfile
     {
+        // Properties, some are required to make this object, some have a max/min length setting, some require a specific structure like an email address. 
         public int Id { get; set; }
 
         [StringLength(28, MinimumLength = 28)]
