@@ -5,10 +5,13 @@ using System.Collections.Generic;
 
 namespace GoalGetters.Repositories
 {
+    // child class of baseRepository, IDifficultyLevelRepository interface
     public class DifficultyLevelRepository : BaseRepository, IDifficultyLevelRepository
     {
-        public DifficultyLevelRepository(IConfiguration configuration) : base(configuration) { }
+        // constructor sets the base parent method with the microsoft library config
+        public DifficultyLevelRepository(IConfiguration configuration) : base(configuration) {}
 
+        // method in the class that returns a list of difficulty levels by opening a SQL connection and parsing a series of rows into models before addind them to the list 
         public List<DifficultyLevel> GetAllDifficultyLevels()
         {
             List<DifficultyLevel> DLs = new List<DifficultyLevel>();

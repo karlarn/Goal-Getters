@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 // Groups together all the files for this specific project
 namespace GoalGetters.Models
 {
-    // Blueprint for an object 
+    // Blueprint for a goal object 
     public class Goal
     {
         // Properties to an object if the property has required the object can not be created without that property having a value. This class also has a list of objects attached to it. 
