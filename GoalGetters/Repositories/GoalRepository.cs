@@ -6,10 +6,13 @@ using System.Collections.Generic;
 
 namespace GoalGetters.Repositories
 {
+    // This is prolly going to change a lot. Well see 
     public class GoalRepository : BaseRepository, IGoalRepository
     {
+        // constructor
         public GoalRepository(IConfiguration configuration) : base(configuration) { }
 
+        // Method in the class for inserting a new row in the DB by opening a sql connection returns nothing 
         public void Add(Goal goal)
         {
             using (var conn = Connection)
@@ -34,6 +37,7 @@ namespace GoalGetters.Repositories
             }
         }
 
+        // Lets decide all the things below this are methods unless told otherwise. returns rows from the table in the db each gets parsed into a model object and added to a list  
         public List<Goal> GetAllGoals()
         {
             List<Goal> goals = new List<Goal>();
@@ -127,6 +131,7 @@ namespace GoalGetters.Repositories
 
         }
 
+        // returns a list of goals based on a specific id that is passed into the method 
         public List<Goal> GetAllGoalsById(int id)
         {
             using (var conn = Connection)
@@ -216,6 +221,7 @@ namespace GoalGetters.Repositories
             }
         }
 
+        // removes a row from the goal table that matches the id that is passed in 
         public void Delete(int id)
         {
             using (var conn = Connection)
@@ -233,6 +239,7 @@ namespace GoalGetters.Repositories
             }
         }
 
+        // Sets new values to an already existing row in the goal table 
         public void Update(Goal goal)
         {
             using (var conn = Connection)
@@ -259,6 +266,7 @@ namespace GoalGetters.Repositories
             }
         }
 
+        // Retruns one single goal object that matches the id passed into the method 
         public Goal GetGoalById(int id)
         {
             using (var conn = Connection)
@@ -295,7 +303,7 @@ namespace GoalGetters.Repositories
             }
         }
 
-
+        // returns a specific goal with a list of updates 
         public Goal GetGoalWithUpdatesById(int id)
         {
             using (var conn = Connection)
@@ -391,6 +399,8 @@ namespace GoalGetters.Repositories
 
             }
         }
+
+        // Sets a new value of a specific column in a specific row that already exists 
         public void UpdateCompletion(int id)
         {
 

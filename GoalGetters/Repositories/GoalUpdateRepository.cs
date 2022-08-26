@@ -6,8 +6,10 @@ namespace GoalGetters.Repositories
 {
     public class GoalUpdateRepository : BaseRepository, IGoalUpdateRepository
     {
+        // constructor 
         public GoalUpdateRepository(IConfiguration configuration) : base(configuration) { }
 
+        // Creates a new row in the goalupdate table based on the model passed into the method 
         public void Add(GoalUpdate update)
         {
             using (var conn = Connection)
