@@ -3,12 +3,16 @@ using GoalGetters.Utils;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 
+// groups files together in a single project 
 namespace GoalGetters.Repositories
 {
+    // class for all the methods for opening to connections for the ifeelyou table 
     public class IFeelYouRepository : BaseRepository, IIFeelYouRepository
     {
+        // consturctor that passes in a parameter that represents a set of key/value application configuration properties.
         public IFeelYouRepository(IConfiguration configuration) : base(configuration) { }
 
+        // Returns a list of likes from a ifeelyou table in a db from opening a connection
         public List<IFeelYou> GetAllLikes()
         {
             List<IFeelYou> likes = new List<IFeelYou>();
@@ -42,6 +46,7 @@ namespace GoalGetters.Repositories
 
         }
 
+        // Inserts a new row into the ifeelyou table of the db
         public void Add(IFeelYou like)
         {
             using (var conn = Connection)
@@ -62,6 +67,7 @@ namespace GoalGetters.Repositories
             }
         }
 
+        // deletes a specific row from the ifeelyou table in the db based on two different foreign keys 
         public void Delete(IFeelYou like)
         {
             using (var conn = Connection)

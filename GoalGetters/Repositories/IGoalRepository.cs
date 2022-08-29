@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace GoalGetters.Repositories
 {
+    // interface for goalrepo. The repo must have all these methods to be considered part of the grouping
     public interface IGoalRepository
     {
         public void Add(Goal goal);
