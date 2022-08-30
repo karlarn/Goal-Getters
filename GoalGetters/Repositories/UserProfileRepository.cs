@@ -4,10 +4,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace GoalGetters.Repositories
 {
+    // Child class of baserepo and part of the iuserprofilerepo interface
     public class UserProfileRepository : BaseRepository, IUserProfileRepository
     {
+        // class constructor with a parameter passed through from the config microsoft library
         public UserProfileRepository(IConfiguration configuration) : base(configuration) { }
 
+        // Returns a userprofile model object by searching the sql db for a matching row of the parameter that is passed through
         public UserProfile GetByFirebaseUserId(string firebaseUserId)
         {
             using (var conn = Connection)
@@ -44,6 +47,7 @@ namespace GoalGetters.Repositories
             }
         }
 
+        // Creates a new row in the db with a userprofile model object that is passed in the parameters 
         public void Add(UserProfile userProfile)
         {
             using (var conn = Connection)
