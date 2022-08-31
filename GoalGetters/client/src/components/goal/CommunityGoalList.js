@@ -13,23 +13,19 @@ export const CommunityGoalList = () => {
 
     // Holds an array of goal objects
     const [goals, setGoals] = useState([]);
-    // Holds a single interger
+    // Holds a single integer
     const [userId, setUserId] = useState();
 
-    // uses the getAllGoals method from goalManager, after the fetch returns an array of goal objects it is set in the goals useState.
-    const getCommunityGoals = () => {
-        getAllGoals().then(g => setGoals(g))
-    }
-
-    // Fetches the Id of the logged in user from authManager, then sets the userId useState to an interger. 
-    const setCurrentUserId = () => {
+    const loadCommunityGoalListView = () => {
+        // uses the getAllGoals method from goalManager, after the fetch returns an array of goal objects it is set in the goals useState.
+        getAllGoals().then(g=> setGoals(g))
+        // Fetches the Id of the logged in user from authManager, then sets the userId useState to an interger.
         getCurrentUserId().then((res) => setUserId(res.id))
     }
 
     // When you navigate to "/communitygoals" after the page loads, will call these two methods to set the useState.
     useEffect(() => {
-        getCommunityGoals();
-        setCurrentUserId();
+        loadCommunityGoalListView()
     }, [])
 
     return (
