@@ -22,14 +22,10 @@ export const GoalEdit = () => {
     // gets the id out of the Url. The colon in the path in application views is the trigger. 
     const { id } = useParams()
 
-    // Calls a fetch method in difficultyLevelManager to return an array of Levels
-    const getDLs = () => {
+    // Calls a fetch method in difficultyLevelManager to return an array of Levels then uses the useParams to make a fetch call in goalManager that returns a specific object then sets the useState of the goal
+    const dataFetchAndSet = () => {
         getDifficultyLevels()
-            .then(dls => setDL(dls))
-    }
-
-    // Uses the useParams to make a fetch call in goalManager that returns a specific object then sets the useState of the goal
-    const getGoal = () => {
+        .then(dls => setDL(dls))
         getSingleGoalById(id)
             .then(g => setGoal(g))
     }
@@ -52,10 +48,9 @@ export const GoalEdit = () => {
                 .then(() => navigate("/"))
         }
     }
-    // This could me one call in a useEffect, I'll fix it later. 
+    // Calls dataFetchAndSet after the page loads empty.
     useEffect(() => {
-        getDLs()
-        getGoal()
+        dataFetchAndSet()
     }, [])
 
     // Html 

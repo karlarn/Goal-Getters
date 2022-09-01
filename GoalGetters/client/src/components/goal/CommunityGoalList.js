@@ -23,7 +23,7 @@ export const CommunityGoalList = () => {
         getCurrentUserId().then((res) => setUserId(res.id))
     }
 
-    // When you navigate to "/communitygoals" after the page loads, will call these two methods to set the useState.
+    // When you navigate to "/communitygoals" after the page loads, will call loadcommunitygoallistview to set the useState.
     useEffect(() => {
         loadCommunityGoalListView()
     }, [])
