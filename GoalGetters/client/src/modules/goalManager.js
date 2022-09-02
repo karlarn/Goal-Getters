@@ -4,20 +4,19 @@ import { getToken } from "./authManager";
 const baseUrl = '/api/Goal';
 
 // Returns an array of goal objects that share a specific Id 
-export const getGoalsById = (id) => {
+export const getGoalsById = () => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/UserGoals`, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
+                Authorization: `Bearer ${token}`
             }
         }).then((res) => {
             if (res.ok) {
                 return res.json()
             } else {
                 throw new Error(
-                    "An unknown error occurred while trying to get this goal."
+                    "An error occurred while trying to get your goals."
                 )
             }
         })
@@ -30,15 +29,14 @@ export const getAllGoals = () => {
         return fetch(baseUrl, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
-            },
+                Authorization: `Bearer ${token}`
+            }
         }).then((res) => {
             if (res.ok) {
                 return res.json()
             } else {
                 throw new Error(
-                    "An unknown error occurred while trying to get goals. Heh.",
+                    "An unknown error occurred while trying to get community goals.",
                 )
             }
 
@@ -59,11 +57,10 @@ export const addGoal = (goal) => {
             body: JSON.stringify(goal)
         }).then((res) => {
             if (res.ok) {
-
             }
             else {
                 throw new Error(
-                    "Well, Fuck."
+                    "Something went wrong while trying to create your post."
                 )
             }
         })
@@ -76,22 +73,21 @@ export const getSingleGoalById = (id) => {
         return fetch(`${baseUrl}/${id}`, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
+                Authorization: `Bearer ${token}`
             }
         }).then((res) => {
             if (res.ok) {
                 return res.json()
             } else {
                 throw new Error(
-                    "An unknown error occurred while trying to get this goal."
+                    "An error occurred while trying to get this goal."
                 )
             }
         })
     })
 }
 
-// Puts new information into something already existing in the DB
+// Puts new information into columns of a row that already exists in the DB
 export const updateGoal = (goal) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/${goal.id}`, {
@@ -103,35 +99,33 @@ export const updateGoal = (goal) => {
             body: JSON.stringify(goal)
         }).then((res) => {
             if (res.ok) {
-
             }
             else if (res.status === 401) {
-                throw new Error("Unauthorized");
+                throw new Error("You are unauthorized to edit this goal.")
             }
             else {
                 throw new Error(
-                    "Well, -_- .",
+                    "Something went wrong while trying to update your existing goal.",
                 );
             }
         })
     })
 }
 
-// Deletes a specific goal in the Db using the id as a reference
+// Deletes a specific goal row in the Db using the id as a reference
 export const deleteGoal = (id) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/${id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify(id)
+            }
         }).then((res) => {
             if (res.ok) {
             }
             else {
                 throw new Error(
-                    "Nope."
+                    "Something went wrong while trying to delete your goal."
                 )
             }
         })
@@ -144,16 +138,14 @@ export const updateCompletion = (id) => {
         return fetch(`${baseUrl}/Complete/${id}`, {
             method: "PUT",
             headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
+                Authorization: `Bearer ${token}`
             }
         }).then((res) => {
             if (res.ok) {
-
             }
             else {
                 throw new Error(
-                    "Well, -_- .",
+                    "Something went wrong while trying to update your completion date.",
                 );
             }
         })
@@ -174,7 +166,7 @@ export const getSingleGoalWithUpdatesById = (id) => {
                 return res.json()
             } else {
                 throw new Error(
-                    "An unknown error occurred while trying to get you goal."
+                    "An unknown error occurred while trying to get your goal."
                 )
             }
         })

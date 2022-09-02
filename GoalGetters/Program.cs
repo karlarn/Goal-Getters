@@ -15,7 +15,7 @@ namespace GoalGetters
             CreateHostBuilder(args).Build().Run();
         }
 
-// Method, ihostbuilder is an interface in the library imported above 
+        // Method, ihostbuilder is an interface in the library imported above 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
