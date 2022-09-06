@@ -19,6 +19,12 @@ export const GoalForm = () => {
     // Navigates to different paths 
     const navigate = useNavigate();
 
+    // Sets the Difficulty Levels in the DB to the useState of dLevels with a fetch call imported from difficulyLevelManager
+    const getLevelsFromDB = () =>{
+        getDifficultyLevels()
+            .then(lvl => setDLevel(lvl))
+    }
+
     // When change happens in an input field the goal object is updated where the value and the id match and set to a new state. 
     const handleInputChange = (e) => {
         const newGoal = { ...goal }
@@ -37,11 +43,11 @@ export const GoalForm = () => {
         }
     }
 
-    // when the view first loads the method in difficultyLevelManager is called and its set to the useState. Prolly refactor.
+    // Calls a method at the load of the page to get the different difficulty levels and set them to the corrisponding useState
     useEffect(() => {
-        getDifficultyLevels()
-            .then(lvl => setDLevel(lvl))
+        getLevelsFromDB()
     }, [])
+    
     // Html view
     return (
         <div className="container">
