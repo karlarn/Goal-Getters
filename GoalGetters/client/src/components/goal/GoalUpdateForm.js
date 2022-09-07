@@ -28,13 +28,9 @@ export const GoalUpdateForm = () => {
 
     // If you filled it out all the way it should make a successful request and navigate you to the landing page. 
     const handleClickSave = (e) => {
-        if (update.whatHaveYouDone === "") {
-            window.alert("Please fill out all fields.")
-        }
-        else {
-            update.goalId = id;
-            addGoalUpdate(update).then(() => navigate(`/`))
-        }
+        update.goalId = id
+        update.whatHaveYouDone === ""? window.alert("Please fill out all fields.")
+        : addGoalUpdate(update).then(() => navigate(`/`))
     }
 
     // Html render

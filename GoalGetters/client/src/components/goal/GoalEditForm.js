@@ -17,7 +17,7 @@ export const GoalEdit = () => {
         expectedCompletionDate: "",
         userProfileId: 0
     })
-    // navigates to different views of the page 
+    // navigates to different views of the page with url fetch calls  
     const navigate = useNavigate()
     // gets the id out of the Url. The colon in the path in application views is the trigger. 
     const { id } = useParams()
