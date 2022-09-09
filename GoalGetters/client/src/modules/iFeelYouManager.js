@@ -29,14 +29,13 @@ export const removeLike = (id) => {
         return fetch(`${baseUrl}/${id}`, {
             method: "DELETE",
             headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             }
         }).then((res) => {
-            if (res.ok) {
-
+            try { 
+                return res.ok
             }
-            else {
+            catch (error){
                 throw new Error(
                     "Well, Fuck."
                 )

@@ -1,23 +1,39 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Card, CardBody, Button, Row, Col } from "reactstrap";
 import { addLike, removeLike } from "../../modules/iFeelYouManager";
 
 // Card for rendering goals in the community board with a singular goal object and a current user interger. 
-const CommunityGoal = ({ goal, currentUser }) => {
+const CommunityGoal = ({userLike, goal, count }) => {
+    const [ youLike, setYouLike ] = useState(userLike)
+    const [likeCount, setLikeCount] = useState(count)
 
     // Calls the addLike method in the goalManager using the goal object's id. If there is no error, the page will reload.  
     const addTheFeels = (id) => {
         addLike(id)
-            .then(() => window.location.reload())
-
+            .then(() => {
+                setLikeCount(likeCount+1)
+                setYouLike(true)
+            })
     }
 
     // Calls the removeLike method in the goalManager using goal object's id. If there is no error the page will reload. 
     const removeTheFeels = (id) => {
         removeLike(id)
-            .then(() => window.location.reload())
+            .then(() =>{
+                setLikeCount(likeCount-1)
+                setYouLike(false)
+            })
+            
     }
 
+    const setState = () => {
+        setLikeCount(count) 
+        setYouLike(userLike)            
+    }
+
+    useEffect(()=>{
+        setState()
+    }, [])
     // The visual render of the card using the singular object that was passed through along with the currentUser id.
     return (
         <>
@@ -38,7 +54,7 @@ const CommunityGoal = ({ goal, currentUser }) => {
                         </Col>
                     </Row>
                     {/* checks if the current logged in user is in an array of likes. If this is true an "Unfeel" button is rendered. If this is false an "I Feel You" button is rendered. */}
-                    {goal.likes.find((obj) => obj.userProfileId === currentUser) ? <Button color="primary" onClick={() => removeTheFeels(goal.id)}>{`Unfeel (${goal.likes.length})`}</Button> : <Button outline color="primary" onClick={() => addTheFeels(goal.id)}>{`I Feel You (${goal.likes.length})`}</Button>}
+                    {youLike ? <Button color="secondary" onClick={() => removeTheFeels(goal.id)}>{`Unfeel (${likeCount})`}</Button> : <Button color="primary" onClick={( ) => addTheFeels(goal.id)}>{`I Feel You (${likeCount})`}</Button>}
                 </CardBody>
             </Card>
         </>

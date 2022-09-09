@@ -21,6 +21,7 @@ export const CommunityGoalList = () => {
         getAllGoals().then(g=> setGoals(g))
         // Fetches the Id of the logged in user from authManager, then sets the userId useState to an interger.
         getCurrentUserId().then((res) => setUserId(res.id))
+
     }
 
     // When you navigate to "/communitygoals" after the page loads, will call loadcommunitygoallistview to set the useState.
@@ -36,7 +37,7 @@ export const CommunityGoalList = () => {
                 {goals.map((singleGoal) => (
                     <div key={singleGoal.id}>
                         {
-                            userId === singleGoal.userProfile.id ? <Goal goal={singleGoal} /> : <CommunityGoal goal={singleGoal} currentUser={userId} />
+                            userId === singleGoal.userProfile.id ? <Goal goal={singleGoal} /> : <CommunityGoal userLike={singleGoal.likes.find((obj)=>obj.userProfileId === userId)? true: false} goal={singleGoal} count={singleGoal.likes.length} />
                         }
 
                     </div>))}
