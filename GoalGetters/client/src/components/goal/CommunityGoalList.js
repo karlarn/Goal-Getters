@@ -37,7 +37,7 @@ export const CommunityGoalList = () => {
                 {goals.map((singleGoal) => (
                     <div key={singleGoal.id}>
                         {
-                            userId === singleGoal.userProfile.id ? <Goal goal={singleGoal} /> : <CommunityGoal userLike={singleGoal.likes.find((obj)=>obj.userProfileId === userId)? true: false} goal={singleGoal} count={singleGoal.likes.length} />
+                            userId === singleGoal.userProfile.id ? <Goal goal={singleGoal} /> : <CommunityGoal userLike={singleGoal.likes.find((obj)=>{return obj.userProfileId === userId})? true: false} goal={singleGoal} count={singleGoal.likes.length} />
                         }
 
                     </div>))}

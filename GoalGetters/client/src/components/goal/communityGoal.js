@@ -4,8 +4,8 @@ import { addLike, removeLike } from "../../modules/iFeelYouManager";
 
 // Card for rendering goals in the community board with a singular goal object and a current user interger. 
 const CommunityGoal = ({userLike, goal, count }) => {
-    const [ youLike, setYouLike ] = useState(userLike)
-    const [likeCount, setLikeCount] = useState(count)
+    const [ youLike, setYouLike ] = useState()
+    const [likeCount, setLikeCount] = useState()
 
     // Calls the addLike method in the goalManager using the goal object's id. If there is no error, the page will reload.  
     const addTheFeels = (id) => {
@@ -27,7 +27,7 @@ const CommunityGoal = ({userLike, goal, count }) => {
     }
 
     const setState = () => {
-        setLikeCount(count) 
+        setLikeCount(count)
         setYouLike(userLike)            
     }
 
