@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getSingleGoalWithUpdatesById, deleteGoal, updateCompletion } from "../../modules/goalManager"
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Card, CardBody, Col, Row } from "reactstrap";
+import { DateRestructure } from "../Utils";
+
 
 // exported to application views 
 export default function UserGoalUpdateList() {
@@ -55,8 +57,8 @@ export default function UserGoalUpdateList() {
                             <b>Worst Case Scenario:</b><p> {goal?.worstCaseScenario}</p>
                             </Col>
                             <Col>
-                            <p><b>Created:</b> {goal?.dateCreated.slice([0], [10])}</p>
-                            <p><b>Expected completion date:</b> {goal?.expectedCompletionDate.slice([0], [10])}</p>
+                            <p><b>Created:</b> {goal?.dateCreated?DateRestructure(goal.dateCreated):""}</p>
+                            <p><b>Expected completion date:</b> {goal?.expectedCompletionDate?DateRestructure(goal.expectedCompletionDate):""}</p>
                             </Col>
                             </Row>
                             {goal?.completionDate === "0001-01-01T00:00:00" ? <>
@@ -77,7 +79,7 @@ export default function UserGoalUpdateList() {
                                 {
                                     goal?.goalUpdates.map(update => (
                                         <div key={update.id}>
-                                            <p><b>Updated:</b> {update.timestamp.slice([0], [10])}</p>
+                                            <p><b>Updated:</b> {DateRestructure(update.timestamp)}</p>
                                             <p>{update.whatHaveYouDone}</p>
                                             <p>___________________________</p>
                                         </div>

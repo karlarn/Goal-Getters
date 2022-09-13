@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Card, CardBody, Button, Row, Col } from "reactstrap";
 import { addLike, removeLike } from "../../modules/iFeelYouManager";
+import { DateRestructure } from "../Utils";
 
 // Card for rendering goals in the community board with a singular goal object and a current user interger. 
 const CommunityGoal = ({userLike, goal, count }) => {
@@ -48,9 +49,9 @@ const CommunityGoal = ({userLike, goal, count }) => {
                         </Col>
                         <Col>
                             <p><b>Created:</b> 
-                            {goal.dateCreated.slice([0], [10])}</p>
-                            <p><b>Expected Completion Date:</b> {goal.expectedCompletionDate.slice([0], [10])}</p>
-                            <p><b>Completion Date:</b> {goal.completionDate === "0001-01-01T00:00:00" ? "This goal is not completed yet." : `${goal.completionDate.slice([0], [10])}`} </p>
+                            {DateRestructure(goal.dateCreated)}</p>
+                            <p><b>Expected Completion Date:</b> {DateRestructure(goal.expectedCompletionDate)}</p>
+                            <p><b>Completion Date:</b> {goal.completionDate === "0001-01-01T00:00:00" ? "This goal is not completed yet." : `${DateRestructure(goal.completionDate)}`} </p>
                         </Col>
                     </Row>
                     {/* checks if the current logged in user is in an array of likes. If this is true an "Unfeel" button is rendered. If this is false an "I Feel You" button is rendered. */}
