@@ -19,6 +19,7 @@ const Goal = ({ goal }) => {
     // updateCompletion fetch call in goalManager changes the completeion date from null to an actual timestamp. After the request returns the page reloads.
     const completeGoal = (goal) => {
         updateCompletion(goal)
+            // using window.location.reload() since this card is found in multiple views 
             .then(() => window.location.reload())
     }
 
