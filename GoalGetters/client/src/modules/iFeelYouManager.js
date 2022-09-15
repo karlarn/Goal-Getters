@@ -8,8 +8,7 @@ export const addLike = (id) => {
         return fetch(`${baseUrl}/${id}`, {
             method: "POST",
             headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             }
         }).then((res) => {
             if (res.ok) {
@@ -17,7 +16,7 @@ export const addLike = (id) => {
             }
             else {
                 throw new Error(
-                    "Well, Fuck."
+                    "Well, fuck."
                 )
             }
         })
@@ -37,7 +36,7 @@ export const removeLike = (id) => {
             }
             catch (error){
                 throw new Error(
-                    "Well, Fuck."
+                    "Well, fuck."
                 )
             }
         })
