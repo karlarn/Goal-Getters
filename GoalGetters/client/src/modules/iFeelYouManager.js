@@ -3,6 +3,7 @@ import { getToken } from "./authManager";
 
 const baseUrl = '/api/IFeelYou';
 
+// Uses the id passed in the parameter to fill in a fetch call to the api to post new information to a table in the DB. 
 export const addLike = (id) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/${id}`, {
@@ -23,6 +24,7 @@ export const addLike = (id) => {
     })
 }
 
+// Uses an id passed into a fetch call to remove a row from a table in the DB
 export const removeLike = (id) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/${id}`, {
