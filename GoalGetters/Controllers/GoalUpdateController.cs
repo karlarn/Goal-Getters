@@ -2,6 +2,7 @@
 using GoalGetters.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Security.Claims;
 
 namespace GoalGetters.Controllers
 {
@@ -14,12 +15,13 @@ namespace GoalGetters.Controllers
     {
         // private attribute of the controller
         private readonly IGoalUpdateRepository _goalUpdateRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
 
         // Class constructor
-        public GoalUpdateController(IGoalUpdateRepository goalUpdateRepository)
+        public GoalUpdateController(IGoalUpdateRepository goalUpdateRepository, IUserProfileRepository userProfileRepository)
         {
             _goalUpdateRepository = goalUpdateRepository;
-
+            _userProfileRepository = userProfileRepository;
         }
 
         // Post request for the controller that passes an update object sets the date to now and creates a new row in the goalupdate table 
@@ -30,6 +32,12 @@ namespace GoalGetters.Controllers
             _goalUpdateRepository.Add(update);
             return NoContent();
 
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
 
 
