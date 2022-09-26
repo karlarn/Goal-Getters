@@ -17,9 +17,6 @@ namespace GoalGetters.Controllers
     // Goal controller class that inherits atributed from the parent ControllerBase
     public class GoalController : ControllerBase
     {
-        // Attributes
-        private readonly IGoalRepository _goalRepository;
-        private readonly IUserProfileRepository _userProfileRepository;
 
         // Constructor
         public GoalController(IGoalRepository goalRepository, IUserProfileRepository userProfileRepository)
@@ -27,6 +24,10 @@ namespace GoalGetters.Controllers
             _goalRepository = goalRepository;
             _userProfileRepository = userProfileRepository;
         }
+
+        // Attributes
+        private readonly IGoalRepository _goalRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
 
         // Listens for HTTP get requests of just the base route returns a response of a list of goal objects 
         [HttpGet]
