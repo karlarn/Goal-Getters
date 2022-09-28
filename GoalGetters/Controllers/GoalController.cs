@@ -46,6 +46,10 @@ namespace GoalGetters.Controllers
             {
                 return NotFound();
             }
+            else if (Goals.Count<1)
+            {
+                return BadRequest();
+            }
             return Ok(Goals);
         }
 
