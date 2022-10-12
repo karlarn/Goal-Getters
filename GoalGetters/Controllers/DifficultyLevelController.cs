@@ -13,9 +13,10 @@ namespace GoalGetters.Controllers
     public class DifficultyLevelController : ControllerBase
     {
         // Property only to be used inside the class and is read only 
-        private readonly IDifficultyLevelRepository _difficultyLevelRepository;
-        // Same
         private readonly IUserProfileRepository _userProfileRepository;
+        
+        // Same
+        private readonly IDifficultyLevelRepository _difficultyLevelRepository;
 
         // Constructor for the class
         public DifficultyLevelController(IDifficultyLevelRepository difficultyLevelRepository, IUserProfileRepository userProfileRepository)
