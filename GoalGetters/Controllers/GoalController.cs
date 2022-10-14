@@ -24,8 +24,8 @@ namespace GoalGetters.Controllers
         // Constructor
         public GoalController(IGoalRepository goalRepository, IUserProfileRepository userProfileRepository)
         {
-            _goalRepository = goalRepository;
             _userProfileRepository = userProfileRepository;
+            _goalRepository = goalRepository;
         }
 
         // Listens for HTTP get requests of just the base route returns a response of a list of goal objects 
