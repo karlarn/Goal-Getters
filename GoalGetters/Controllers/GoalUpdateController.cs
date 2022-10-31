@@ -21,8 +21,8 @@ namespace GoalGetters.Controllers
         } 
         
         // private attribute of the controller
-        private readonly IGoalUpdateRepository _goalUpdateRepository;
         private readonly IUserProfileRepository _userProfileRepository;
+        private readonly IGoalUpdateRepository _goalUpdateRepository;                 
 
         // Post request for the controller that passes an update object sets the date to now and creates a new row in the goalupdate table 
         [HttpPost]
