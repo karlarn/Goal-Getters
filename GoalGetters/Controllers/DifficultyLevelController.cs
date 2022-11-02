@@ -27,7 +27,7 @@ namespace GoalGetters.Controllers
         // HTTP get for api/DifficultyLevel (Name of the controller)
         // Calls difficultylevelrepository class and returns a response of an array of difficulty levels 
         [HttpGet]
-        public IActionResult GetAll(int i)
+        public IActionResult GetAll()
         {
             return Ok(_difficultyLevelRepository.GetAllDifficultyLevels());
         }
