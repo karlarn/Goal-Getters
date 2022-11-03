@@ -19,13 +19,13 @@ export default function ApplicationViews({ isLoggedIn }) {
             index
             element={isLoggedIn ? <UserGoalList /> : <Navigate to="/login" />}
           />
-          <Route path="goalwithupdates/:id" element={<UserGoalUpdateList />} />
-          <Route path="goal/addupdate/:id" element={<GoalUpdateForm />} />
-          <Route path="communitygoals" element={<CommunityGoalList />} />
-          <Route path="edit/:id" element={<GoalEdit />} />
-          <Route path="create" element={<GoalForm />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+          <Route path="goalwithupdates/:id" element={<UserGoalUpdateList/>} />
+          <Route path="goal/addupdate/:id" element={<GoalUpdateForm/>} />
+          <Route path="communitygoals" element={<CommunityGoalList/>} />
+          <Route path="edit/:id" element={<GoalEdit/>} />
+          <Route path="create" element={<GoalForm/>} />
+          <Route path="login" element={<Login/>} />
+          <Route path="register" element={<Register/>} />
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
         </Route>
       </Routes>
