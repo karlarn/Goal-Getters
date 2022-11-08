@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink as RRNavLink } from "react-router-dom";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink
-} from 'reactstrap';
+import { Collapse,Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 import { logout } from '../modules/authManager';
 
 // exports to App.js in client directory. isLoggedIn is passed since you get two different renders based on the status. 
