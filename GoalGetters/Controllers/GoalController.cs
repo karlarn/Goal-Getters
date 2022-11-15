@@ -19,8 +19,8 @@ namespace GoalGetters.Controllers
     {
         
         // Attributes
-        private readonly IGoalRepository _goalRepository;
         private readonly IUserProfileRepository _userProfileRepository;
+        private readonly IGoalRepository _goalRepository;
 
         // Constructor
         public GoalController(IGoalRepository goalRepository, IUserProfileRepository userProfileRepository)
