@@ -11,7 +11,7 @@ export default function UserGoalUpdateList() {
     //Part of react router dom library 
     const navigate = useNavigate();
 
-    // Same
+    // Part of the REACT library. Creates a variable based off the information in the URL. 
     const { id } = useParams();
 
     // Empty receptical for an object until useEffect 
