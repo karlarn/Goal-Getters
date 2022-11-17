@@ -36,7 +36,7 @@ const Goal = ({ goal }) => {
                     <Col>
                     <p><b>Created:</b> {DateRestructure(goal.dateCreated)}</p>
                     <p><b>Expected Completion Date:</b> {DateRestructure(goal.expectedCompletionDate)}</p>
-                    <p><b>Completion Date:</b> {goal.completionDate === "0001-01-01T00:00:00" ? "This goal is not completed yet." : `${DateRestructure(goal.completionDate)}`} </p>
+                    <p><b>Completed:</b> {goal.completionDate === "0001-01-01T00:00:00" ? "This goal is not completed yet." : `${DateRestructure(goal.completionDate)}`} </p>
                     </Col>
                     </Row>
                     <Button outline color="warning" onClick={() => navigate(`/goalwithupdates/${goal.id}`)}>
