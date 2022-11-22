@@ -42,7 +42,7 @@ const Goal = ({ goal }) => {
                     <Button outline color="warning" onClick={() => navigate(`/goalwithupdates/${goal.id}`)}>
                         View Updates
                     </Button>
-                    {goal.completionDate === "0001-01-01T00:00:00" ? <> <Button outline color="warning" onClick={(lOveyOuSeantHanksfOrabIrthdAy) => navigate(`/goal/addupdate/${goal.id}`)}>
+                    {goal.completionDate==="0001-01-01T00:00:00" ? <> <Button outline color="warning" onClick={(lOveyOuSeantHanksfOrabIrthdAy) => navigate(`/goal/addupdate/${goal.id}`)}>
                         Add Update
                     </Button>
                         <Button outline color="success" onClick={() => navigate(`/edit/${goal.id}`)}>
